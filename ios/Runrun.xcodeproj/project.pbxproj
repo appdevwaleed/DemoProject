@@ -14,6 +14,19 @@
 		159C3E8E08D3F6FA57BE60DC /* Pods_Runrun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD40F1BC7C37A3C15417B66 /* Pods_Runrun.framework */; };
 		370A0B9EE2053D675069E697 /* Pods_Runrun_RunrunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E0EB40ECC6E932DFCF6D27 /* Pods_Runrun_RunrunTests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D12387DD29E9DE7400927D02 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D12387DC29E9DE7400927D02 /* GoogleService-Info.plist */; };
+		D12387FF29E9EA9800927D02 /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = D12387E329E9EA8C00927D02 /* CircularStd-Book.otf */; };
+		D123880029E9EA9800927D02 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387E429E9EA8C00927D02 /* SFProText-Regular.ttf */; };
+		D123880229E9EA9800927D02 /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D12387E629E9EA8E00927D02 /* CircularStd-Medium.otf */; };
+		D123880829E9EA9800927D02 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D12387EC29E9EA9100927D02 /* Metropolis-Bold.otf */; };
+		D123880929E9EA9800927D02 /* Eina02-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387ED29E9EA9100927D02 /* Eina02-Regular.ttf */; };
+		D123880B29E9EA9800927D02 /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D12387EF29E9EA9200927D02 /* Metropolis-SemiBold.otf */; };
+		D123880C29E9EA9800927D02 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387F029E9EA9300927D02 /* CircularStd-Bold.ttf */; };
+		D123881029E9EA9800927D02 /* Eina02-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387F429E9EA9500927D02 /* Eina02-Bold.ttf */; };
+		D123881129E9EA9800927D02 /* Metropolis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D12387F529E9EA9500927D02 /* Metropolis-Regular.otf */; };
+		D123881229E9EA9800927D02 /* Eina02-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387F629E9EA9600927D02 /* Eina02-SemiBold.ttf */; };
+		D123881329E9EA9800927D02 /* Futura-Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387F729E9EA9600927D02 /* Futura-Normal.ttf */; };
+		D123881429E9EA9800927D02 /* FuturaBT-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387F829E9EA9700927D02 /* FuturaBT-Heavy.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +55,35 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Runrun/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Runrun-RunrunTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runrun-RunrunTests.release.xcconfig"; path = "Target Support Files/Pods-Runrun-RunrunTests/Pods-Runrun-RunrunTests.release.xcconfig"; sourceTree = "<group>"; };
 		AAD40F1BC7C37A3C15417B66 /* Pods_Runrun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runrun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D12387DC29E9DE7400927D02 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Documents/Projects/ReactNative/AwesomeProject/ios/Runrun/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D12387E029E9EA8A00927D02 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		D12387E129E9EA8A00927D02 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		D12387E229E9EA8B00927D02 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		D12387E329E9EA8C00927D02 /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.otf"; sourceTree = "<group>"; };
+		D12387E429E9EA8C00927D02 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		D12387E529E9EA8D00927D02 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		D12387E629E9EA8E00927D02 /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Medium.otf"; sourceTree = "<group>"; };
+		D12387E729E9EA8E00927D02 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		D12387E829E9EA8F00927D02 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		D12387E929E9EA8F00927D02 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		D12387EA29E9EA9000927D02 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		D12387EB29E9EA9100927D02 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		D12387EC29E9EA9100927D02 /* Metropolis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Bold.otf"; sourceTree = "<group>"; };
+		D12387ED29E9EA9100927D02 /* Eina02-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eina02-Regular.ttf"; sourceTree = "<group>"; };
+		D12387EE29E9EA9200927D02 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		D12387EF29E9EA9200927D02 /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
+		D12387F029E9EA9300927D02 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		D12387F129E9EA9300927D02 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		D12387F229E9EA9400927D02 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		D12387F329E9EA9400927D02 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		D12387F429E9EA9500927D02 /* Eina02-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eina02-Bold.ttf"; sourceTree = "<group>"; };
+		D12387F529E9EA9500927D02 /* Metropolis-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Regular.otf"; sourceTree = "<group>"; };
+		D12387F629E9EA9600927D02 /* Eina02-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eina02-SemiBold.ttf"; sourceTree = "<group>"; };
+		D12387F729E9EA9600927D02 /* Futura-Normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Normal.ttf"; sourceTree = "<group>"; };
+		D12387F829E9EA9700927D02 /* FuturaBT-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaBT-Heavy.ttf"; sourceTree = "<group>"; };
+		D12387F929E9EA9700927D02 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		D12387FA29E9EA9800927D02 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		D12387FB29E9EA9800927D02 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
 		E9E0EB40ECC6E932DFCF6D27 /* Pods_Runrun_RunrunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runrun_RunrunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -86,6 +128,7 @@
 		13B07FAE1A68108700A75B9A /* Runrun */ = {
 			isa = PBXGroup;
 			children = (
+				D12387DC29E9DE7400927D02 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -116,6 +159,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D12387DF29E9EA3D00927D02 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Runrun */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* RunrunTests */,
@@ -148,6 +192,41 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D12387DF29E9EA3D00927D02 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D12387FB29E9EA9800927D02 /* AntDesign.ttf */,
+				D12387F029E9EA9300927D02 /* CircularStd-Bold.ttf */,
+				D12387E329E9EA8C00927D02 /* CircularStd-Book.otf */,
+				D12387E629E9EA8E00927D02 /* CircularStd-Medium.otf */,
+				D12387F429E9EA9500927D02 /* Eina02-Bold.ttf */,
+				D12387ED29E9EA9100927D02 /* Eina02-Regular.ttf */,
+				D12387F629E9EA9600927D02 /* Eina02-SemiBold.ttf */,
+				D12387E029E9EA8A00927D02 /* Entypo.ttf */,
+				D12387E929E9EA8F00927D02 /* EvilIcons.ttf */,
+				D12387E129E9EA8A00927D02 /* Feather.ttf */,
+				D12387FA29E9EA9800927D02 /* FontAwesome.ttf */,
+				D12387E729E9EA8E00927D02 /* FontAwesome5_Brands.ttf */,
+				D12387F329E9EA9400927D02 /* FontAwesome5_Regular.ttf */,
+				D12387EB29E9EA9100927D02 /* FontAwesome5_Solid.ttf */,
+				D12387F229E9EA9400927D02 /* Fontisto.ttf */,
+				D12387F929E9EA9700927D02 /* Foundation.ttf */,
+				D12387F729E9EA9600927D02 /* Futura-Normal.ttf */,
+				D12387F829E9EA9700927D02 /* FuturaBT-Heavy.ttf */,
+				D12387EA29E9EA9000927D02 /* Ionicons.ttf */,
+				D12387F129E9EA9300927D02 /* MaterialCommunityIcons.ttf */,
+				D12387EE29E9EA9200927D02 /* MaterialIcons.ttf */,
+				D12387EC29E9EA9100927D02 /* Metropolis-Bold.otf */,
+				D12387F529E9EA9500927D02 /* Metropolis-Regular.otf */,
+				D12387EF29E9EA9200927D02 /* Metropolis-SemiBold.otf */,
+				D12387E529E9EA8D00927D02 /* Octicons.ttf */,
+				D12387E429E9EA8C00927D02 /* SFProText-Regular.ttf */,
+				D12387E229E9EA8B00927D02 /* SimpleLineIcons.ttf */,
+				D12387E829E9EA8F00927D02 /* Zocial.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +247,7 @@
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
 			name = RunrunTests;
+			productName = RunrunTests;
 			productReference = 00E356EE1AD99517003FC87E /* RunrunTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -242,8 +322,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D123881229E9EA9800927D02 /* Eina02-SemiBold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				D123881429E9EA9800927D02 /* FuturaBT-Heavy.ttf in Resources */,
+				D123881029E9EA9800927D02 /* Eina02-Bold.ttf in Resources */,
+				D123880829E9EA9800927D02 /* Metropolis-Bold.otf in Resources */,
+				D123880929E9EA9800927D02 /* Eina02-Regular.ttf in Resources */,
+				D12387FF29E9EA9800927D02 /* CircularStd-Book.otf in Resources */,
+				D123880C29E9EA9800927D02 /* CircularStd-Bold.ttf in Resources */,
+				D123880229E9EA9800927D02 /* CircularStd-Medium.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D123880B29E9EA9800927D02 /* Metropolis-SemiBold.otf in Resources */,
+				D123881329E9EA9800927D02 /* Futura-Normal.ttf in Resources */,
+				D123881129E9EA9800927D02 /* Metropolis-Regular.otf in Resources */,
+				D12387DD29E9DE7400927D02 /* GoogleService-Info.plist in Resources */,
+				D123880029E9EA9800927D02 /* SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +595,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runrun/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Runrun;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -529,6 +623,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Runrun/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Runrun;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -595,6 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Runrun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -660,6 +756,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Runrun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,

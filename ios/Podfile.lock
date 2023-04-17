@@ -459,7 +459,7 @@ PODS:
     - React-Core
   - react-native-lottie-splash-screen (1.1.1):
     - React
-  - react-native-maps (1.4.0):
+  - react-native-maps (0.29.4):
     - React-Core
   - react-native-netinfo (9.3.9):
     - React-Core
@@ -675,7 +675,7 @@ PODS:
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
-  - RNShare (8.2.1):
+  - RNShare (8.2.2):
     - React-Core
   - RNSoundPlayer (0.13.2):
     - React-Core
@@ -1127,7 +1127,7 @@ SPEC CHECKSUMS:
   react-native-google-places: 34e976a0e13cb55cc9603ef2fa6764ed534af806
   react-native-image-picker: ec9b713e248760bfa0f879f0715391de4651a7cb
   react-native-lottie-splash-screen: 015423265bac5f46016dff2e31c97b9590808856
-  react-native-maps: 7135a33610202745d08fdf151ce6b0d01952a99c
+  react-native-maps: a421fe6aeb74279597c4ea9598f25796108e2d89
   react-native-netinfo: 22c082970cbd99071a4e5aa7a612ac20d66b08f0
   react-native-ni-sdk: f9a29cdfccf12d6eb55c41716feb6591bf105738
   react-native-otp-verify: d30202ea73a15bfc85026320498b20cadf041110
@@ -1180,7 +1180,7 @@ SPEC CHECKSUMS:
   RNPermissions: b0e38eca4ce809f39a1655c7dfb8fe957b844cfc
   RNReanimated: f0dd6b881808e635ef0673f89642937d6c141314
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
-  RNShare: eaee3dd5a06dad397c7d3b14762007035c5de405
+  RNShare: d82e10f6b7677f4b0048c23709bd04098d5aee6c
   RNSoundPlayer: 369105c565b8fe6ea0a43fc882dc81eba444e842
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
