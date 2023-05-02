@@ -159,6 +159,7 @@ export default function OrderDetail({ navigation, route }) {
 
   /*********Get order detail screen********* */
   const _getOrderDetailScreen = () => {
+    console.log("_getOrderDetailScreen123")
     let data = {};
     data['order_id'] = paramData?.orderId;
     if (paramData?.selectedVendor) {
@@ -174,7 +175,7 @@ export default function OrderDetail({ navigation, route }) {
         // systemuser: DeviceInfo.getUniqueId(),
       })
       .then((res) => {
-        console.log("THIS IS RESPONSE",res);
+        console.log("_getOrderDetailScreen123", res)
         updateState({ isLoading: false });
         if (res?.data) {
           // if (res?.data?.luxury_option_name !== strings.DELIVERY) {
@@ -359,6 +360,176 @@ export default function OrderDetail({ navigation, route }) {
     navigation.navigate(navigationStrings.RATEORDER, { item });
   };
 
+  const _renderSelectedItem= (item={})=>{
+
+    // console.log(JSON.stringify(item),'MY ITEMS')
+
+    // console.log("getDeliveryHeader", cartItems);
+    // console.log("cartData", cartData);
+    // console.log("getDeliveryHeader", cartItems[0]?.order_status?.current_status?.title);
+    return (
+      <TouchableOpacity   onPress={() =>{}} style={[
+        {
+            borderRadius:15,
+            marginTop:15,
+            borderRadius:15,
+            backgroundColor:"#E7F2F9",
+          }, 
+        ]}>
+            <View
+              style={{
+                opacity: 1,
+                padding:10,
+                alignContent:"space-between",
+                
+              }}>
+                   <View style={{flexDirection:"row",  alignItems:"center"}}>
+                    <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center", marginRight:15, marginLeft:10}}>
+                      {item?.products?.map((i) => {
+                        return (
+                          <Image
+                            resizeMode={'contain'}
+                            style={[{height: 130, width: 120, borderRadius:15, marginTop:-5}, 
+                              
+                            ]}
+                            source={{
+                              uri: getImageUrl(
+                                i?.image_path?.image_fit,
+                                i?.image_path?.image_path,
+                                '150/150',
+                              ),
+                            }}
+                          />
+                        );
+                    })}
+                    </View>
+                <View style={{flex:1,  marginRight:5,}}>
+                <Text
+                          numberOfLines={1}
+                          style={[
+                                  styles.carType,
+                                  {
+                                    color: colors.blackC,
+                                    fontFamily: fontFamily.bold,
+                                    fontSize: textScale(14),
+                                    marginBottom:15
+                                  },
+                                ]
+                          }>
+                          {item?.vendor?.name}
+                    </Text>
+                  <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", marginTop:-11}}>
+
+                    <Text
+                          numberOfLines={1}
+                          style={[
+                                  styles.carType,
+                                  {
+                                    color: colors.blackC,
+                                    fontFamily: fontFamily.bold,
+                                    fontSize: textScale(18),
+                                  },
+                                ]
+                          }>
+                          {item?.products[0]?.product_name}
+                    </Text>
+                    <Text
+                          numberOfLines={1}
+                          style={[
+                                  styles.carType,
+                                  {
+                                    color: colors.blackC,
+                                    fontFamily: fontFamily.bold,
+                                    fontSize: textScale(14),  
+                                  },
+                                ]}>
+                          {`${currencies?.primary_currency?.symbol} ${Number(
+                            item?.products[0]?.price,
+                          ).toFixed(2)}`}
+                    </Text>
+
+                  </View>
+                  <View style={{justifyContent:"flex-end", marginTop:4}}>
+                  <View style={{ flexDirection:"row", alignItems:"center",  marginRight:10}}>
+                      <View style={{ width:23, height:23, borderRadius:8, justifyContent:"center", alignItems:"center", backgroundColor:colors.white, alignSelf:"center"}}>
+                        <Image
+                          resizeMode={'contain'}
+                          style={{height: 13, width: 13}}
+                          source={imagePath.cubeBlueIcon}
+                          />
+                      </View>
+                      <Text
+                          numberOfLines={2}
+                          style={[
+                                  styles.carType,
+                                  {
+                                    color: colors.blackC,
+                                    fontFamily: fontFamily.bold,
+                                    fontSize: textScale(8),  
+                                    marginLeft:5
+                                  },
+                                ]}>
+                          {item?.products[0]?.dimensions}
+                      </Text> 
+                  </View>
+                  <View style={{ flexDirection:"row", marginTop:5, marginRight:10,alignItems:"center",}}>
+                      <View style={{ width:23, height:23, borderRadius:8, justifyContent:"center", alignItems:"center", backgroundColor:colors.white, alignSelf:"center"}}>
+                        <Image
+                          resizeMode={'contain'}
+                          style={{height: 11, width: 11, }}
+                          source={imagePath.bucketBlueIcon}
+                          />
+                      </View>
+                      <Text
+                          numberOfLines={1}
+                          style={[
+                                  styles.carType,
+                                  {
+                                    color: colors.blackC,
+                                    fontFamily: fontFamily.bold,
+                                    fontSize: textScale(8),  
+                                    marginLeft:5
+                                  },
+                                ]}>
+                          {item?.products[0]?.weight}
+                      </Text>
+                      {/* 1 - 5 kgs */}
+                  </View>
+                  <View style={{ flexDirection:"row", marginTop:5, marginRight:10,alignItems:"center",}}>
+                      <View style={{ width:23, height:23, borderRadius:8, justifyContent:"center", alignItems:"center", backgroundColor:colors.white, alignSelf:"center"}}>
+                        <Image
+                          resizeMode={'contain'}
+                          style={{height: 13, width: 13, }}
+                          source={imagePath.clockBlueIcon}
+                          />
+                      </View>
+                      <Text
+                          numberOfLines={1}
+                          style={[
+                                  styles.carType,
+                                  {
+                                    color: colors.blackC,
+                                    fontFamily: fontFamily.bold,
+                                    fontSize: textScale(8),  
+                                    marginLeft:5
+                                  },
+                                ]}>
+                          {item?.products[0]?.sla}
+                      </Text>
+                      {/* 24 - 48 hrs */}
+                  </View>
+                </View>
+                </View>
+                
+              </View> 
+            </View>
+
+
+        {/* </AnimatedListItem> */}
+      </TouchableOpacity>
+    );
+  }
+
   const _renderItem = ({ item, index }) => {
     console.log(JSON.stringify(item),'MY ITEMS')
 
@@ -378,7 +549,7 @@ export default function OrderDetail({ navigation, route }) {
         }}>
         {/* show ETA Time */}
 
-        {cartData?.vendors[0]?.order_status?.current_status?.title !== strings.DELIVERED &&
+        {/* {cartData?.vendors[0]?.order_status?.current_status?.title !== strings.DELIVERED &&
           cartData?.vendors[0]?.order_status?.current_status?.title !== strings.REJECTED &&
           (!!cartData?.scheduled_date_time || !!cartData?.ETA) && (
             <View
@@ -397,378 +568,166 @@ export default function OrderDetail({ navigation, route }) {
                   : cartData?.ETA}
               </Text>
             </View>
-          )}
-        <View
-          style={{
-            paddingHorizontal: moderateScale(10),
+          )} */}
+          <View style={{
+              marginVertical:30,
+              paddingHorizontal:20
           }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <View
+            <View style={{flexDirection:"row",  alignItems:"center", marginTop:0}}>
+              <View style={{width:25, height:25, borderRadius:8, backgroundColor:colors.lightBluebackground, justifyContent:"center", alignItems:"center"}}>
+                <Image source={imagePath.summeryIcon} style={{width:12, height:12}}/>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={[
+                        styles.carType,
+                        {
+                          color: colors.greyText,
+                          fontFamily: fontFamily.medium,
+                          fontSize: textScale(13),
+                          marginLeft:10
+                        },
+                      ]
+                }>
+                {strings?.SHIPMENT_DETAILS}
+              </Text>
+            </View>
+             {_renderSelectedItem(item)}
+             <View style={{flexDirection:"row", marginTop:10, alignItems:"center"}}>
+              <View style={{width:25, height:25, borderRadius:8, backgroundColor:colors.lightBluebackground, justifyContent:"center", alignItems:"center"}}>
+                <Image source={imagePath.locationIconBlue} style={{width:15, height:15, }}/>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={[
+                        styles.carType,
+                        {
+                          color: colors.greyText,
+                          fontFamily: fontFamily.bold,
+                          fontSize: textScale(13),
+                          marginLeft:10
+                        },
+                      ]
+                }>
+                {strings?.LOCATION}
+              </Text>
+            </View>
+            <View  
               style={{
+                marginTop:10,
+                padding: moderateScale(16),
                 backgroundColor: isDarkMode
                   ? MyDarkTheme.colors.background
-                  : colors.white,
-                marginVertical: moderateScale(10),
+                  : colors.lightBluebackground,
+                borderRadius: moderateScale(10),
+                marginBottom: moderateScaleVertical(12),
+                // borderColor:colors.redB,
+                // borderWidth:(focusedContainer!==null&&focusedContainer=="pickup")?1:0
               }}>
-              <Text
-                style={{
-                  ...styles.summaryText,
-                  marginBottom: 0,
-                  color: isDarkMode
-                    ? MyDarkTheme.colors.text
-                    : colors.blackOpacity86,
-
-                  fontSize: textScale(13),
-                  fontFamily: fontFamily.bold,
-                }}>
-                {item?.vendor_name}
-              </Text>
-
-            { (cartData?.vendors[0]?.order_status?.current_status?.title =='Rejected' && cartData?.vendors[0]?.reject_reason!==null&&cartData?.vendors[0]?.reject_reason!==undefined)&&
-              
-              <Text
-                style={{
-                  ...styles.summaryText,
-                  marginBottom: 0,
-                  color: isDarkMode
-                    ? MyDarkTheme.colors.text
-                    : colors.redFireBrick,
-
-                  fontSize: textScale(9),
-                  fontFamily: fontFamily.bold,
-                }}>
-                Reject Reason : {cartData?.vendors[0]?.reject_reason}
-              </Text>
-            }
-            </View>
-            <View>
-            {/* <TouchableHighlight onPress={createPDF}>
-              <Text>Download Receipt</Text>
-            </TouchableHighlight> */}
-          </View> 
-            {cartData?.vendors[0]?.order_status?.current_status?.title == 'Order Delivered'   &&
-
-              <View>
-                <TouchableHighlight onPress={() => {
-                  createPDF()
-                  navigation.navigate(navigationStrings.ORDER_RECEIPT, {
-                    data: base64Source,
-                    orderId: paramData.orderId,
-                    vendorId: paramData?.selectedVendor.id
-                  })
-                }
-                }>
-                  <Text
-                  style={{ color: isDarkMode
-                    ? MyDarkTheme.colors.text
-                    : colors.blackOpacity86,}}>{strings.DOWNLOAD_RECEIPT}</Text>
-                </TouchableHighlight>
-              </View>}
-          </View>
-          {item?.products.length
-            ? item?.products.map((i, inx) => {
-              if (item?.vendor_id == i?.vendor_id) {
-                return (
-                  <View
-                    style={{
-                      marginBottom: moderateScaleVertical(6),
-                    }}
-                    key={inx}>
-                    <View
-                      style={{
-                        ...styles.cartItemMainContainer,
-                        backgroundColor: isDarkMode
-                          ? MyDarkTheme.colors.background
-                          : '#F8F8F8',
-                      }}>
-                      <FastImage
-                        source={
-                          i?.image_path
-                            ? {
-                              uri: getImageUrl(
-                                i?.image_path?.image_fit,
-                                i?.image_path?.image_path,
-                                '300/300',
-                              ),
-                              priority: FastImage.priority.high,
-                            }
-                            : ''
-                        }
-                        style={styles.imageStyle}
-                      />
-
-                      <View style={styles.cartItemDetailsCon}>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                          }}>
-                          <View
-                            style={{
-                              flex: 0.7,
-                              justifyContent: 'center',
-                              alignItems: 'flex-start',
-                            }}>
-                            <Text
-                              numberOfLines={1}
-                              style={{
-                                ...styles.priceItemLabel2,
-                                color: isDarkMode
-                                  ? MyDarkTheme.colors.text
-                                  : colors.blackOpacity86,
-                                fontSize: textScale(12),
-                                fontFamily: fontFamily.medium,
-                              }}>
-                              {i?.translation?.title},
-                            </Text>
-
-                            {i?.variant_options.length
-                              ? i?.variant_options.map((j, jnx) => {
-                                return (
-                                  <View style={{ flexDirection: 'row' }}>
-                                    <Text
-                                      style={
-                                        isDarkMode
-                                          ? [
-                                            styles.cartItemWeight2,
-                                            {
-                                              color:
-                                                MyDarkTheme.colors.text,
-                                            },
-                                          ]
-                                          : styles.cartItemWeight2
-                                      }
-                                      numberOfLines={1}>
-                                      {j.title}{' '}
-                                    </Text>
-                                    <Text
-                                      style={
-                                        isDarkMode
-                                          ? [
-                                            styles.cartItemWeight2,
-                                            {
-                                              color:
-                                                MyDarkTheme.colors.text,
-                                            },
-                                          ]
-                                          : styles.cartItemWeight2
-                                      }
-                                      numberOfLines={
-                                        1
-                                      }>{`(${j.option})`}</Text>
-                                  </View>
-                                );
-                              })
-                              : null}
-                          </View>
-
-                          <View
-                            style={{
-                              flex: 0.5,
-                              justifyContent: 'center',
-                              alignItems: 'flex-end',
-                            }}>
-                            <Text style={styles.cartItemPrice}>
-                              {`${currencies?.primary_currency?.symbol}${
-                                // Number(i?.pvariant?.multiplier) *
-                                Number((i?.price)*i?.quantity).toFixed(2)
-                                }`}
-                            </Text>
-                          </View>
-                        </View>
-
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                          }}>
-                          <View style={{ flex: 0.5, justifyContent: 'center' }}>
-                            {i?.quantity && (
-                              <View
-                                style={{
-                                  flexDirection: 'row',
-                                  alignItems: 'center',
-                                }}>
-                                <Text
-                                  style={{
-                                    ...styles.quantityStyles,
-                                    color: isDarkMode
-                                      ? MyDarkTheme.colors.text
-                                      : colors.textGrey,
-                                  }}>
-                                  {strings.QTY}
-                                </Text>
-                                <Text style={styles.cartItemWeight}>
-                                  {i?.quantity}
-                                </Text>
-                              </View>
-                            )}
-                            {!!i?.product_addons.length && (
-                              <View>
-                                <Text style={styles.cartItemWeight2}>
-                                  {strings.EXTRA}
-                                </Text>
-                              </View>
-                            )}
-                            {i?.product_addons.length
-                              ? i?.product_addons.map((j, jnx) => {
-                                return (
-                                  <View style={{ flexDirection: 'row' }}>
-                                    <Text
-                                      style={styles.cartItemWeight2}
-                                      numberOfLines={1}>
-                                      {j.addon_title}{' '}
-                                    </Text>
-                                    <Text
-                                      style={styles.cartItemWeight2}
-                                      numberOfLines={
-                                        1
-                                      }>{`(${j.option_title})`}</Text>
-                                  </View>
-                                );
-                              })
-                              : null}
-                          </View>
-                        </View>
-                      </View>
-                    </View>
-
-                    {!!paramData?.showRating ? (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                          paddingBottom: moderateScaleVertical(5),
-                          paddingHorizontal: moderateScale(10),
-                        }}>
-                        {/* <StarRating
-                            disabled={false}
-                            maxStars={5}
-                            rating={Number(i?.product_rating?.rating)}
-                            selectedStar={(rating) =>
-                              onStarRatingPress(i, rating)
-                            }
-                            fullStarColor={colors.ORANGE}
-                            starSize={15}
-                          /> */}
-                        <AirbnbRating
-                          defaultRating={Number(i?.product_rating?.rating)}
-                          showRating={false}
-                          size={15}
-                          onFinishRating={(rating) => ratingCompleted(i, rating)} />
-                        {i?.product_rating?.rating ? (
-                          <View>
-                            <Text
-                              onPress={() => rateYourOrder(i)}
-                              style={[
-                                styles.writeAReview,
-                                { color: themeColors.primary_color },
-                              ]}>
-                              {strings.WRITE_REVIEW}
-                            </Text>
-                          </View>
-                        ) : null}
-                      </View>
-                    ) : null}
+                <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'flex-start', marginBottom:  moderateScale(5)}}>
+                  <View style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
+                    <Image source={imagePath.arrowUpBlueBack} style={{width:18, height:18}} resizeMode={"cover"}/>
                   </View>
-                );
-              } else {
-                null;
+                  <Text style={{ color: colors.blackC, marginLeft:10, fontFamily: fontFamily.bold, fontSize:14}} >{strings.PICKUP}</Text>
+                </View>
+                  <View>
+                    <Text numberOfLines={2} style={{ color: colors.blackC,  fontFamily: fontFamily.medium, fontSize:14, opacity:0.7}}>
+                      {cartData?.delivery_pickup_address}
+                    </Text>
+                  </View>
+                  
+                </View>
+                <View  
+                  style={{
+                    marginTop:10,
+                    padding: moderateScale(16),
+                    backgroundColor: isDarkMode
+                      ? MyDarkTheme.colors.background
+                      : colors.lightBluebackground,
+                    borderRadius: moderateScale(10),
+                    marginBottom: moderateScaleVertical(12),
+                    // borderColor:colors.redB,
+                    // borderWidth:(focusedContainer!==null&&focusedContainer=="pickup")?1:0
+                  }}>
+                <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'flex-start', marginBottom:  moderateScale(5)}}>
+                  <View style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
+                    <Image source={imagePath.arrowUpBlueBack} style={{width:18, height:18}} resizeMode={"cover"}/>
+                  </View>
+                  <Text style={{ color: colors.blackC, marginLeft:10, fontFamily: fontFamily.bold, fontSize:14}} >{strings.DROPOFF}</Text>
+                </View>
+                  <View>
+                    <Text numberOfLines={2} style={{ color: colors.blackC,  fontFamily: fontFamily.medium, fontSize:14, opacity:0.7}}>
+                      {cartData?.delivery_drop_address}
+                    </Text>
+                  </View>
+                </View>
+
+              <View style={{flexDirection:"row", marginTop:10, alignItems:"center"}}>
+                <View style={{width:25, height:25, borderRadius:8, backgroundColor:colors.lightBluebackground, justifyContent:"center", alignItems:"center"}}>
+                  <Image source={imagePath.personContact} style={{width:15, height:15, }}/>
+                </View>
+                <Text
+                  numberOfLines={1}
+                  style={[
+                          styles.carType,
+                          {
+                            color: colors.greyText,
+                            fontFamily: fontFamily.bold,
+                            fontSize: textScale(13),
+                            marginLeft:10
+                          },
+                        ]
+                  }>
+                  {strings?.CONTACTS}
+                </Text>
+              </View> 
+
+
+              { orderType !== 'product' &&
+                <View  
+                  style={{
+                    marginTop:10,
+                    padding: moderateScale(16),
+                    backgroundColor: isDarkMode
+                      ? MyDarkTheme.colors.background
+                      : colors.lightBluebackground,
+                    borderRadius: moderateScale(10),
+                    marginBottom: moderateScaleVertical(12),
+                    // borderColor:colors.redB,
+                    // borderWidth:(focusedContainer!==null&&focusedContainer=="pickup")?1:0
+                  }}>
+                  <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between', marginBottom:  moderateScale(5)}}>
+                      <Text style={{ color: colors.blackC, fontFamily: fontFamily.bold, fontSize:14}} >{strings.PICKUP} : <Text numberOfLines={2} style={{ color: colors.blackC,  fontFamily: fontFamily.medium, fontSize:12, opacity:0.5}}>
+                        {cartData?.delivery_pickup_name}
+                      </Text>
+                    </Text>
+                    <TouchableOpacity onPress={()=>{
+                        Communications.phonecall(cartData?.delivery_pickup_phone_number, true)
+                    }}style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
+                      <Image source={imagePath.call} style={{width:15, height:15}} resizeMode={"cover"}/>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between', marginBottom:  moderateScale(5)}}>
+                      <Text style={{ color: colors.blackC, fontFamily: fontFamily.bold, fontSize:14}} >{strings.DROPOFF} : <Text numberOfLines={2} style={{ color: colors.blackC,  fontFamily: fontFamily.medium, fontSize:12, opacity:0.5}}>
+                        {cartData?.delivery_drop_name}
+                      </Text>
+                    </Text>
+                    <TouchableOpacity onPress={()=>{
+                        Communications.phonecall(cartData?.delivery_drop_phone_number, true)
+                    }} style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
+                      <Image source={imagePath.call} style={{width:15, height:15}} resizeMode={"cover"}/>
+                    </TouchableOpacity>
+                  </View>
+              
+                      
+                </View>
               }
-            })
-            : null}
-
-            
-
-          {/* {!!Number(item?.discount_amount) && (
-            <View style={styles.itemPriceDiscountTaxView}>
-              <Text
-                style={
-                  isDarkMode
-                    ? [
-                      styles.priceItemLabel,
-                      {
-                        color: MyDarkTheme.colors.text,
-                        fontSize: textScale(14),
-                      },
-                    ]
-                    : styles.priceItemLabel
-                }>
-                {strings.DISCOUNT}
-              </Text>
-              <Text
-                style={
-                  isDarkMode
-                    ? [
-                      styles.priceItemLabel,
-                      {
-                        color: MyDarkTheme.colors.text,
-                        fontSize: textScale(14),
-                      },
-                    ]
-                    : styles.priceItemLabel
-                }>{`- ${currencies?.primary_currency?.symbol}${Number(
-                  item?.discount_amount ? item?.discount_amount : 0,
-                ).toFixed(2)}`}</Text>
-            </View>
-          )}
-          {!!Number(item?.delivery_fee) && (
-            <View style={styles.itemPriceDiscountTaxView}>
-              <Text
-                style={
-                  isDarkMode
-                    ? [
-                      styles.priceItemLabel,
-                      {
-                        color: MyDarkTheme.colors.text,
-                        fontSize: textScale(14),
-                      },
-                    ]
-                    : styles.priceItemLabel
-                }>
-                {strings.DELIVERY_CHARGES}
-              </Text>
-              <Text
-                style={
-                  isDarkMode
-                    ? [
-                      styles.priceItemLabel,
-                      {
-                        color: MyDarkTheme.colors.text,
-                        fontSize: textScale(14),
-                      },
-                    ]
-                    : styles.priceItemLabel
-                }>{`${currencies?.primary_currency?.symbol}${Number(
-                  item?.delivery_fee ? item?.delivery_fee : 0,
-                ).toFixed(2)}`}</Text>
-            </View>
-          )}
-          <View style={styles.itemPriceDiscountTaxView}>
-            <Text
-              style={{
-                ...styles.summaryText,
-                fontSize: textScale(14),
-                color: isDarkMode
-                  ? MyDarkTheme.colors.text
-                  : colors.blackOpacity86,
-              }}>
-              {strings.AMOUNT}
-            </Text>
-            <Text
-              style={{
-                ...styles.summaryText,
-                fontSize: textScale(14),
-                color: isDarkMode
-                  ? MyDarkTheme.colors.text
-                  : colors.blackOpacity86,
-              }}>{`${currencies?.primary_currency?.symbol}${Number(
-                item?.subtotal_amount ? item?.subtotal_amount : 0,
-              ).toFixed(2)}`}</Text>
-          </View> */}
-        </View>
+             
+                  
+          </View>
+          
       </View >
-    );
+    ); 
   };
   const orderAmountDetail = () => {
     return (
@@ -985,8 +944,10 @@ export default function OrderDetail({ navigation, route }) {
         <View
           style={{
             padding: moderateScale(16),
+            marginTop:-30,
+            marginHorizontal:10
           }}>
-          <View  style={styles.addressStyles}>
+          {/* <View  style={styles.addressStyles}>
           <Image source={imagePath.addressIcon} />
           <Text
             style={{
@@ -999,27 +960,27 @@ export default function OrderDetail({ navigation, route }) {
             }}>
             {strings.DELIEVERY_ADDRESS}
           </Text>
-          </View>
+          </View> */}
           { orderType === 'product' ? 
-<View  
-style={{
-  padding: moderateScale(16),
-  backgroundColor: isDarkMode
-    ? MyDarkTheme.colors.background
-    : colors.greyColor,
-    borderRadius: moderateScale(10),
-    marginBottom: moderateScaleVertical(12),
-}}>
-  <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'flex-start', marginBottom:  moderateScale(5)}}>
-  <Image source={imagePath.downArrow} />
-  <Text  style={{ color: themeColors.primary_color, marginLeft: moderateScale(4) }}>{strings.DROPOFF_LOCATION}</Text>
-  </View>
-  <View>
-      <Text>
-      {cartData?.address?.address}
-      </Text>
-  </View>
-</View>
+          <View  
+            style={{
+              padding: moderateScale(16),
+              backgroundColor: isDarkMode
+                ? MyDarkTheme.colors.background
+                : colors.greyColor,
+                borderRadius: moderateScale(10),
+                marginBottom: moderateScaleVertical(12),
+            }}>
+            <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'flex-start', marginBottom:  moderateScale(5)}}>
+            <Image source={imagePath.downArrow} />
+            <Text  style={{ color: themeColors.primary_color, marginLeft: moderateScale(4) }}>{strings.DROPOFF_LOCATION}</Text>
+            </View>
+            <View>
+                <Text>
+                {cartData?.address?.address}
+                </Text>
+            </View>
+          </View>
           //  <View
           //     style={{
           //       flexDirection: 'row',
@@ -1042,45 +1003,12 @@ style={{
           //   </View>
          : 
          <View> 
-          <View  
-          style={{
-            padding: moderateScale(16),
-            backgroundColor: isDarkMode
-              ? MyDarkTheme.colors.background
-              : colors.greyColor,
-            borderRadius: moderateScale(10),
-            marginBottom: moderateScaleVertical(12),
-          }}>
-            <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'flex-start', marginBottom:  moderateScale(5)}}>
-            <Image source={imagePath.upArrow} />
-            <Text style={{ color: themeColors.primary_color, marginLeft: moderateScale(4) }} >{strings.PICKUP_LOCATION}</Text>
-            </View>
-            <View>
-                <Text>
-                  {cartData.delivery_pickup_address}
-                </Text>
-            </View>
+     
+       
           </View>
-          <View  
-          style={{
-            padding: moderateScale(16),
-            backgroundColor: isDarkMode
-              ? MyDarkTheme.colors.background
-              : colors.greyColor,
-              borderRadius: moderateScale(10),
-              marginBottom: moderateScaleVertical(12),
-          }}>
-            <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'flex-start', marginBottom:  moderateScale(5)}}>
-            <Image source={imagePath.downArrow} />
-            <Text  style={{ color: themeColors.primary_color, marginLeft: moderateScale(4) }}>{strings.DROPOFF_LOCATION}</Text>
-            </View>
-            <View>
-                <Text>
-                {cartData.delivery_drop_address}
-                </Text>
-            </View>
-          </View>
-          </View>}
+          
+          }
+         
           <LeftRightText
             leftText={strings.ORDER_NUMBER}
             rightText={`#${cartData?.order_number || ''}`}
@@ -1140,7 +1068,7 @@ style={{
                 : colors.blackOpacity86,
             }}
           />
-          {!!cartData?.scheduled_date_time && (
+          {/* {!!cartData?.scheduled_date_time && (
             <LeftRightText
               leftText={strings.SCHEDULED_DATETIME}
               rightText={moment(cartData?.scheduled_date_time).format('lll')}
@@ -1159,7 +1087,7 @@ style={{
                   : colors.blackOpacity86,
               }}
             />
-          )}
+          )} */}
 
           {!!cartItems[0]?.vendor_dinein_table_id && (
             <View>
@@ -1251,65 +1179,72 @@ style={{
               )}
             </View>
           )}
-          { delivery_agent && <View  
-          style={{
-            padding: moderateScale(16),
-            backgroundColor: isDarkMode
-              ? MyDarkTheme.colors.background
-              : colors.greyColor,
-            borderRadius: moderateScale(10),
-            marginBottom: moderateScaleVertical(12),
-          }}>
-            <View style={{ flex: 1, flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between'}}>
-            {/* <View style={{ flex: .2}}><Image source={imagePath.vehicleIcon} /></View> */}
-            <View  style={{ flex: .7, flexDirection: 'row' , alignItems: 'center', justifyContent: 'flex-start'}}>
-            <Image source={imagePath.vehicleIcon} />
-            <View style={{ flexDirection: 'column' ,alignItems: 'flex-start', justifyContent: 'flex-start' , marginLeft: moderateScale(10)}}>
-                <Text>
-                  {"Call Delivery Agent"}
-                </Text>
-                <Text>
-                  {delivery_agent?.name}
-                </Text>
-            </View> 
-            </View>
-            <View  style={{ flex: .3}}>
-            <TransparentButtonWithTxtAndIcon
-                  icon={imagePath.callIcon}
-                  btnText={strings.CALL}
-                  borderRadius={moderateScale(13)}
-                  containerStyle={{
-                    alignItems: 'center',
+
+          {(delivery_agent!==null&&delivery_agent!==undefined)&&
+            <View  
+              style={{
+                padding: moderateScale(16),
+                backgroundColor: isDarkMode
+                  ? MyDarkTheme.colors.background
+                  : colors.lightBluebackground,
+                borderRadius: moderateScale(10),
+                marginBottom: moderateScaleVertical(12),
+              }}>
+              <View style={{ flex: 1, flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between'}}>
+              {/* <View style={{ flex: .2}}><Image source={imagePath.vehicleIcon} /></View> */}
+              <View  style={{ flex: .7, flexDirection: 'row' , alignItems: 'center', justifyContent: 'flex-start'}}>
+              <Image source={imagePath.vehicleIcon} />
+              <View style={{ flexDirection: 'column' ,alignItems: 'flex-start', justifyContent: 'flex-start' , marginLeft: moderateScale(15), }}>
+                  <Text style={{fontFamily:fontFamily.bold, color:colors.black, fontSize:14}}>
+                    {strings.SERVICEAGENT}
+                  </Text>
+                  <Text style={{fontFamily:fontFamily.regular, color:colors.black, fontSize:14}}>
+                    {delivery_agent?.name}
+                  </Text>
+              </View> 
+              </View>
+              <View  style={{ flex: .3}}>
+              <TransparentButtonWithTxtAndIcon
+                    icon={imagePath.callIcon}
+                    btnText={strings.CALL}
+                    borderRadius={moderateScale(13)}
+                    containerStyle={{
+                      alignItems: 'center',
+                    }}
+                    onPress={() => {
+                      Communications.phonecall(delivery_agent?.phone_number, true)
+                    }}
+                    //marginBottom={moderateScaleVertical(10)}
+                  // marginTop={moderateScaleVertical(20)}
+                  btnStyle={{
+                    backgroundColor: colors.focusBackGround
                   }}
-                  onPress={() => {
-                    Communications.phonecall(delivery_agent?.phone_number, true)
-                  }}
-                  //marginBottom={moderateScaleVertical(10)}
-                 // marginTop={moderateScaleVertical(20)}
-                 btnStyle={{
-                  backgroundColor: themeColors.primary_color
-                 }}
-                  textStyle={{
-                    color: colors.white,
-                    textTransform: 'none',
-                    fontSize: textScale(12),
-                    marginLeft: moderateScale(4),
-                  }}
-                />
+                    textStyle={{
+                      color: colors.white,
+                      textTransform: 'none',
+                      fontSize: textScale(12),
+                      marginLeft: moderateScale(4),
+                    }}
+                  />
+              </View>
+              </View>
             </View>
-            </View>
-          </View>}
+          }
+
+
+          
           <View
           style={{
-            padding: moderateScale(16),
-            // backgroundColor: isDarkMode
-            //   ? MyDarkTheme.colors.background
-            //   : colors.greyColor,
-            borderRadius: moderateScale(10),
-            borderColor: colors.greyColor,
-            borderWidth: 2,
+            // padding: moderateScale(16),
+            // // backgroundColor: isDarkMode
+            // //   ? MyDarkTheme.colors.background
+            // //   : colors.greyColor,
+            // borderRadius: moderateScale(10),
+            // borderColor: colors.greyColor,
+            // borderWidth: 2,
+            
           }}>
-          <Text
+          {/* <Text
             style={{
               ...styles.summaryText,
               fontFamily: fontFamily.medium,
@@ -1319,100 +1254,191 @@ style={{
                 : colors.blackOpacity86,
             }}>
             {strings.PAYMENT_SUMMARY}
-          </Text>
+          </Text> */}
+          <View style={{flexDirection:"row",  alignItems:"center", marginBottom:20, marginTop:10}}>
+            <View style={{width:25, height:25, borderRadius:8, backgroundColor:colors.lightBluebackground, justifyContent:"center", alignItems:"center"}}>
+              <Image source={imagePath.summeryIcon} style={{width:12, height:12}}/>
+            </View>
+            <Text
+              numberOfLines={1}
+              style={[
+                      styles.carType,
+                      {
+                        color: colors.greyText,
+                        fontFamily: fontFamily.medium,
+                        fontSize: textScale(13),
+                        marginLeft:10
+                      },
+                    ]
+              }>
+              {strings?.PAYMENT_SUMMARY}
+            </Text>
+          </View>
 
-          {!!cartData?.total_amount && (
-            <LeftRightText
-              // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
-              leftText={strings.PRODUCT_AMOUNT}
-              rightText={`${currencies?.primary_currency?.symbol}${Number(
-                cartData?.total_amount,
-              ).toFixed(2)}`}
-              isDarkMode={isDarkMode}
-              MyDarkTheme={MyDarkTheme}
-            />
-          )}
-          {!!cartData?.total_amount && (
-            <LeftRightText
-              // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
-              leftText={strings.SUBTOTAL}
-              rightText={`${currencies?.primary_currency?.symbol}${Number(
-                cartData?.total_amount,
-              ).toFixed(2)}`}
-              isDarkMode={isDarkMode}
-              MyDarkTheme={MyDarkTheme}
-            />
-          )}
-          {!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && (
-            <LeftRightText
-              leftText={strings.DELIVERY_FEE}
-              rightText={`${currencies?.primary_currency?.symbol}${Number(
-                cartData?.total_delivery_fee,
-              ).toFixed(2)}`}
-              isDarkMode={isDarkMode}
-              MyDarkTheme={MyDarkTheme}
-            />
-          )}
-           {!!cartData?.total_delivery_fee && orderType === 'product' && (
-            <LeftRightText
-              leftText={strings.DELIVERY_FEE}
-              rightText={`${currencies?.primary_currency?.symbol}${Number(
-                cartData?.total_delivery_fee,
-              ).toFixed(2)}`}
-              isDarkMode={isDarkMode}
-              MyDarkTheme={MyDarkTheme}
-            />
-          )}
-          {!!cartData?.total_discount && (
-            <LeftRightText
-              leftText={strings.DISCOUNT}
-              rightText={`-${currencies?.primary_currency?.symbol}${Number(
-                cartData?.total_discount,
-              ).toFixed(2)}`}
-              isDarkMode={isDarkMode}
-              MyDarkTheme={MyDarkTheme}
-            />
-          )}
-          {!!cartData?.taxable_amount && (
-            <LeftRightText
-              // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
-              leftText={strings.TAX}
-              rightText={`${currencies?.primary_currency?.symbol}${Number(
-                cartData?.taxable_amount,
-              ).toFixed(2)}`}
-              isDarkMode={isDarkMode}
-              MyDarkTheme={MyDarkTheme}
-            />
-          )}
+          {orderType === 'product' &&
+
+              <>
+
+                {!!cartData?.total_amount && (
+                  <LeftRightText
+                    // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
+                    leftText={strings.PRODUCT_AMOUNT}
+                    rightText={`${currencies?.primary_currency?.symbol}${Number(
+                      cartData?.total_amount,
+                    ).toFixed(2)}`}
+                    isDarkMode={isDarkMode}
+                    MyDarkTheme={MyDarkTheme}
+                    leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                    rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                  />
+                )}
+                {!!cartData?.total_amount && (
+                  <LeftRightText
+                    // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
+                    leftText={strings.SUBTOTAL}
+                    rightText={`${currencies?.primary_currency?.symbol}${Number(
+                      cartData?.total_amount,
+                    ).toFixed(2)}`}
+                    isDarkMode={isDarkMode}
+                    MyDarkTheme={MyDarkTheme}
+                    leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                    rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                  />
+                )}
+                {!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && (
+                  <LeftRightText
+                    leftText={strings.DELIVERY_FEE}
+                    rightText={`${currencies?.primary_currency?.symbol}${Number(
+                      cartData?.total_delivery_fee,
+                    ).toFixed(2)}`}
+                    isDarkMode={isDarkMode}
+                    MyDarkTheme={MyDarkTheme}
+                    leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                    rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                  />
+                )}
+                {!!cartData?.total_delivery_fee && orderType === 'product' && (
+                  <LeftRightText
+                    leftText={strings.DELIVERY_FEE}
+                    rightText={`${currencies?.primary_currency?.symbol}${Number(
+                      cartData?.total_delivery_fee,
+                    ).toFixed(2)}`}
+                    isDarkMode={isDarkMode}
+                    MyDarkTheme={MyDarkTheme}
+                    leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                    rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                  />
+                )}
+                {!!cartData?.total_discount && (
+                  <LeftRightText
+                    leftText={strings.DISCOUNT}
+                    rightText={`-${currencies?.primary_currency?.symbol}${Number(
+                      cartData?.total_discount,
+                    ).toFixed(2)}`}
+                    isDarkMode={isDarkMode}
+                    MyDarkTheme={MyDarkTheme}
+                    leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                    rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                  />
+                )}
+                {!!cartData?.taxable_amount && (
+                  <LeftRightText
+                    // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
+                    leftText={strings.TAX}
+                    rightText={`${currencies?.primary_currency?.symbol}${Number(
+                      cartData?.taxable_amount,
+                    ).toFixed(2)}`}
+                    isDarkMode={isDarkMode}
+                    MyDarkTheme={MyDarkTheme}
+                    leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                    rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                  />
+                )}
+
+                <LeftRightText
+                  leftText={strings.TOTAL}
+                  rightText={`${currencies?.primary_currency?.symbol}${Number(
+                    cartData?.payable_amount,
+                  ).toFixed(2)}`}
+                  isDarkMode={isDarkMode}
+                  MyDarkTheme={MyDarkTheme}
+                  leftTextStyle={{
+                    fontSize: textScale(14),
+                    color: isDarkMode
+                      ? MyDarkTheme.colors.text
+                      : colors.blackOpacity86,
+                  }}
+                  rightTextStyle={{
+                    fontSize: textScale(14),
+                    color: isDarkMode
+                      ? MyDarkTheme.colors.text
+                      : colors.blackOpacity86,
+                  }}
+                />
+              </>
+              
+            
+          }
+
+
+          {orderType !== 'product' &&
+
+          <>
+
+            {!!cartData?.service_fee && (
+              <LeftRightText
+                // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
+                leftText={strings.SERVICEFEE}
+                rightText={`${currencies?.primary_currency?.symbol}${Number(
+                  cartData?.service_fee,
+                ).toFixed(2)}`}
+                isDarkMode={isDarkMode}
+                MyDarkTheme={MyDarkTheme}
+                leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+              />
+            )}
+            {!!cartData?.taxable_amount && (
+              <LeftRightText
+                // leftText={!!cartData?.total_delivery_fee && orderType !== 'product' && cartData?.total_delivery_fee>0 && strings.SUBTOTAL}
+                leftText={strings.VAT}
+                rightText={`${currencies?.primary_currency?.symbol}${Number(
+                  cartData?.taxable_amount,
+                ).toFixed(2)}`}
+                isDarkMode={isDarkMode}
+                MyDarkTheme={MyDarkTheme}
+                leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+              />
+            )}
+            {!!cartData?.total_amount && (
+              <LeftRightText
+                leftText={strings.GRANDTOTAL}
+                rightText={`${currencies?.primary_currency?.symbol}${Number(
+                  cartData?.total_amount,
+                ).toFixed(2)}`}
+                isDarkMode={isDarkMode}
+                MyDarkTheme={MyDarkTheme}
+                leftTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+                rightTextStyle={{color:colors.black, fontSize:14, fontFamily:fontFamily.medium}}
+              />
+            )}
+          </>
+
+
+          }
+
           <View
             style={{
-              ...styles.dottedLine,
-              borderColor: isDarkMode
-                ? MyDarkTheme.colors.text
-                : colors.lightGreyBgColor,
+              // ...styles.dottedLine,
+              // borderColor: isDarkMode
+              //   ? MyDarkTheme.colors.text
+              //   : colors.lightGreyBgColor,
+          
             }}
           />
 
-          <LeftRightText
-            leftText={strings.TOTAL}
-            rightText={`${currencies?.primary_currency?.symbol}${Number(
-              cartData?.payable_amount,
-            ).toFixed(2)}`}
-            isDarkMode={isDarkMode}
-            MyDarkTheme={MyDarkTheme}
-            leftTextStyle={{
-              fontSize: textScale(16),
-              color: isDarkMode
-                ? MyDarkTheme.colors.text
-                : colors.blackOpacity86,
-            }}
-            rightTextStyle={{
-              fontSize: textScale(16),
-              color: isDarkMode
-                ? MyDarkTheme.colors.text
-                : colors.blackOpacity86,
-            }}
-          />
+
 
           {paramData?.orderStatus?.current_status?.title ===
             strings.DELIVERED &&
@@ -1592,6 +1618,7 @@ style={{
           <View
             style={{
               height: moderateScaleVertical(40),
+              marginBottom:20
             }}
           />
         </View>
@@ -1910,6 +1937,9 @@ style={{
             : colors.borderLight,
         }}
       />
+ 
+
+   
       {/* {delivery_agent && delivery_agent.name &&  (
           <View
             style={{
@@ -1989,6 +2019,46 @@ style={{
             : colors.greyColor,
         }}
         >
+        {(cartItems[0]?.order_status?.current_status?.title==="Rejected") && (
+            <View style={{paddingHorizontal:20,  marginTop:10}}>
+              <LeftRightText
+                leftText={strings.ORDER_STATUS}
+                rightText={cartItems[0]?.order_status?.current_status?.title}
+                isDarkMode={isDarkMode}
+                MyDarkTheme={MyDarkTheme}
+                leftTextStyle={{
+                  fontSize: textScale(12),
+                  color: isDarkMode
+                    ? MyDarkTheme.colors.text
+                    : colors.blackOpacity43,
+                }}
+                rightTextStyle={{
+                  fontSize: textScale(12),
+                  color: isDarkMode
+                    ? MyDarkTheme.colors.text
+                    : colors.redB,
+                }}
+              />
+              <LeftRightText
+                leftText={strings.REJECTIONREASON}
+                rightText={cartItems[0]?.reject_reason}
+                isDarkMode={isDarkMode}
+                MyDarkTheme={MyDarkTheme}
+                leftTextStyle={{
+                  fontSize: textScale(12),
+                  color: isDarkMode
+                    ? MyDarkTheme.colors.text
+                    : colors.blackOpacity43,
+                }}
+                rightTextStyle={{
+                  fontSize: textScale(12),
+                  color: isDarkMode
+                    ? MyDarkTheme.colors.text
+                    : colors.blackOpacity86,
+                }}
+              />
+            </View>
+        )}
         <FlatList
           data={cartItems}
           extraData={cartItems}

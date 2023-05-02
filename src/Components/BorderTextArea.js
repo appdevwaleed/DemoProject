@@ -35,6 +35,7 @@ export default function BorderTextArea({
   secureTextEntry = false,
   borderWidth = 1,
   borderRadius = 13,
+  keyboardType=Platform.OS==='ios'?'default': "none",
   ...props
 }) {
   const theme = useSelector((state) => state?.initBoot?.themeColor);
@@ -112,7 +113,8 @@ export default function BorderTextArea({
         secureTextEntry={secureTextEntry}
         autoCapitalize={'none'}
         caretHidden = {false}
-        returnKeyType='none'
+       
+        keyboardType={keyboardType}
         {...props}
       />
 

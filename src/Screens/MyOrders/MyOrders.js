@@ -135,6 +135,8 @@ export default function MyOrders({ navigation,route }) {
   }, [selectedTab]);
 
   const isFocused = useIsFocused();
+
+
   // Comment based on tester ticket
   // useInterval(
   //   () => {
@@ -369,15 +371,15 @@ export default function MyOrders({ navigation,route }) {
   };
 
   //Get list of all orders based on selected tab
-  useEffect(() => {
-    if (userData && userData?.auth_token) {
-      _getListOfOrders();
-    } else {
-      updateState({
-        isLoading: false,
-      });
-    }
-  }, [pageActive, pagePastOrder, pageScheduleOrder, isRefreshing]);
+  // useEffect(() => {
+  //   if (userData && userData?.auth_token) {
+  //     _getListOfOrders();
+  //   } else {
+  //     updateState({
+  //       isLoading: false,
+  //     });
+  //   }
+  // }, [pageActive, pagePastOrder, pageScheduleOrder, isRefreshing]);
 
   //Refresh screen
 

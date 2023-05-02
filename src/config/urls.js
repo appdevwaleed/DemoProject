@@ -1,5 +1,5 @@
-export const API_BASE_URL = 'https://runrun.ae/api/v1';  // Test 
-// export const API_BASE_URL = 'https://staging.runrun.ae/api/v1';  // staging 
+// export const API_BASE_URL = 'https://runrun.ae/api/v1';  // Test 
+export const API_BASE_URL = 'https://staging.runrun.ae/api/v1';  // staging 
 export const getApiUrl = (endpoint) => API_BASE_URL + endpoint;
 
 

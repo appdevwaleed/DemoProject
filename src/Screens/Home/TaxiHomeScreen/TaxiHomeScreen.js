@@ -85,128 +85,127 @@ export default function TaxiHomeScreen({route, navigation}) {
     updatedData,
     selectedTabType,
   } = state;
+  useFocusEffect(
+    React.useCallback(() => {
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        androidBackButtonHandler,
+      );
+      return () => backHandler.remove();
+    }, []),
+  );
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const backHandler = BackHandler.addEventListener(
-  //       'hardwareBackPress',
-  //       androidBackButtonHandler,
-  //     );
-  //     return () => backHandler.remove();
-  //   }, []),
-  // );
+  useEffect(() => {
+    updateState({updatedData: appMainData?.categories});
+  }, [appMainData]);
 
-  // useEffect(() => {
-  //   updateState({updatedData: appMainData?.categories});
-  // }, [appMainData]);
+  useEffect(() => {
+    if (
+      paramData?.details &&
+      paramData?.details?.formatted_address != location?.address
+    ) {
+      const address = paramData?.details?.formatted_address;
+      const res = {
+        address: address,
+        latitude: paramData?.details?.geometry?.location.lat,
+        longitude: paramData?.details?.geometry?.location.lng,
+      };
+      if (
+        res?.latitude != location?.latitude &&
+        res?.longitude != location?.longitude
+      ) {
+        if (cartItemCount?.data?.item_count) {
+          checkCartWithLatLang(res);
+        } else {
+          updateLatLang(res);
+        }
+      } else {
+        updateLatLang(res);
+      }
+    }
+  }, [paramData?.details]);
 
-  // useEffect(() => {
-  //   if (
-  //     paramData?.details &&
-  //     paramData?.details?.formatted_address != location?.address
-  //   ) {
-  //     const address = paramData?.details?.formatted_address;
-  //     const res = {
-  //       address: address,
-  //       latitude: paramData?.details?.geometry?.location.lat,
-  //       longitude: paramData?.details?.geometry?.location.lng,
-  //     };
-  //     if (
-  //       res?.latitude != location?.latitude &&
-  //       res?.longitude != location?.longitude
-  //     ) {
-  //       if (cartItemCount?.data?.item_count) {
-  //         checkCartWithLatLang(res);
-  //       } else {
-  //         updateLatLang(res);
-  //       }
-  //     } else {
-  //       updateLatLang(res);
-  //     }
-  //   }
-  // }, [paramData?.details]);
+  const checkCartWithLatLang = (res) => {
+    Alert.alert('', strings.THIS_WILL_REMOVE_CART, [
+      {
+        text: strings.CANCEL,
+        onPress: () => console.log('Cancel Pressed'),
+        // style: 'destructive',
+      },
+      {text: strings.CLEAR_CART2, onPress: () => clearCart(res)},
+    ]);
+  };
 
-  // const checkCartWithLatLang = (res) => {
-  //   Alert.alert('', strings.THIS_WILL_REMOVE_CART, [
-  //     {
-  //       text: strings.CANCEL,
-  //       onPress: () => console.log('Cancel Pressed'),
-  //       // style: 'destructive',
-  //     },
-  //     {text: strings.CLEAR_CART2, onPress: () => clearCart(res)},
-  //   ]);
-  // };
+  const clearCart = (location) => {
+    updateLatLang(location);
+    actions
+      .clearCart(
+        {},
+        {
+          code: appData?.profile?.code,
+          currency: currencies?.primary_currency?.id,
+          language: languages?.primary_language?.id,
+          systemuser: DeviceInfo.getUniqueId(),
+        },
+      )
+      .then((res) => {
+        actions.cartItemQty(res);
+        homeData(location);
+      })
+      .catch(errorMethod);
+  };
 
-  // const clearCart = (location) => {
-  //   updateLatLang(location);
-  //   actions
-  //     .clearCart(
-  //       {},
-  //       {
-  //         code: appData?.profile?.code,
-  //         currency: currencies?.primary_currency?.id,
-  //         language: languages?.primary_language?.id,
-  //         systemuser: DeviceInfo.getUniqueId(),
-  //       },
-  //     )
-  //     .then((res) => {
-  //       actions.cartItemQty(res);
-  //       homeData(location);
-  //     })
-  //     .catch(errorMethod);
-  // };
+  const updateLatLang = (res) => {
+    updateState({updateTime: Math.random()});
+    actions.locationData(res);
+  };
+  useEffect(() => {
+    if (updateTime) {
+      homeData();
+    }
+  }, [updateTime]);
+  useEffect(() => {
+    Geocoder.init(profile?.preferences?.map_key, {language: 'en'}); // set the language
+  }, []);
 
-  // const updateLatLang = (res) => {
-  //   updateState({updateTime: Math.random()});
-  //   actions.locationData(res);
-  // };
-  // useEffect(() => {
-  //   if (updateTime) {
-  //     homeData();
-  //   }
-  // }, [updateTime]);
-  // useEffect(() => {
-  //   Geocoder.init(profile?.preferences?.map_key, {language: 'en'}); // set the language
-  // }, []);
+  useEffect(() => {
+    chekLocationPermission()
+      .then((result) => {
+        if (result !== 'goback') {
+          getCurrentLocation('home')
+            .then((res) => {
+              if (
+                appMainData &&
+                typeof appMainData?.reqData == 'object' &&
+                appMainData?.reqData?.latitude &&
+                (location?.latitude == '' || location?.longitude == '')
+              ) {
+                const data = {
+                  address: appMainData?.reqData?.address,
+                  latitude: appMainData?.reqData?.latitude,
+                  longitude: appMainData?.reqData?.longitude,
+                };
+                actions.locationData(data);
+              } else {
+                if (appData?.profile?.preferences?.is_hyperlocal) {
+                  if (!location?.address) {
+                    actions.locationData(res);
+                  }
+                }
+              }
+            })
+            .catch((err) => {});
+        }
+      })
+      .catch((error) => console.log('error while accessing location', error));
+  }, []);
 
-  // useEffect(() => {
-  //   chekLocationPermission()
-  //     .then((result) => {
-  //       if (result !== 'goback') {
-  //         getCurrentLocation('home')
-  //           .then((res) => {
-  //             if (
-  //               appMainData &&
-  //               typeof appMainData?.reqData == 'object' &&
-  //               appMainData?.reqData?.latitude &&
-  //               (location?.latitude == '' || location?.longitude == '')
-  //             ) {
-  //               const data = {
-  //                 address: appMainData?.reqData?.address,
-  //                 latitude: appMainData?.reqData?.latitude,
-  //                 longitude: appMainData?.reqData?.longitude,
-  //               };
-  //               actions.locationData(data);
-  //             } else {
-  //               if (appData?.profile?.preferences?.is_hyperlocal) {
-  //                 if (!location?.address) {
-  //                   actions.locationData(res);
-  //                 }
-  //               }
-  //             }
-  //           })
-  //           .catch((err) => {});
-  //       }
-  //     })
-  //     .catch((error) => console.log('error while accessing location', error));
-  // }, []);
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // homeData();
-  //     getAllAddress();
-  //   }, []),
-  // );
+  useFocusEffect(
+    React.useCallback(() => {
+      // homeData();
+      getAllAddress();
+    }, []),
+  );
 
   // useEffect(() => {
   //   homeData();

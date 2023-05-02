@@ -65,12 +65,6 @@ export default function OrderDetail({navigation, route}) {
       strings.OUT_FOR_DELIVERY,
       strings.DELIVERED,
     ],
-    // labels: [
-    //   {lable: 'Accepted', orderDate: '12/12/1233'},
-    //   {lable: 'Processing', orderDate: ''},
-    //   {lable: 'Out For Delivery', orderDate: ''},
-    //   {lable: 'Delivered', orderDate: ''},
-    // ],
     currentPosition: null,
   });
   const {isLoading, cartItems, cartData, labels, currentPosition} = state;
@@ -91,6 +85,7 @@ export default function OrderDetail({navigation, route}) {
 
   useFocusEffect(
     React.useCallback(() => {
+      // console.log("_getOrderDetailScreen")
       updateState({isLoading: true});
       if (!!userData?.auth_token) {
         _getOrderDetailScreen();
@@ -118,6 +113,7 @@ export default function OrderDetail({navigation, route}) {
         // systemuser: DeviceInfo.getUniqueId(),
       })
       .then((res) => {
+        console.log("_getOrderDetailScreen", res)
         updateState({isLoading: false});
         if (res?.data) {
           updateState({

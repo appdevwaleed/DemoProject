@@ -120,6 +120,7 @@ export default function OtpVerification({navigation, route}) {
       fcm_token: !!fcmToken ? fcmToken : DeviceInfo.getUniqueId(),
     };
     updateState({isLoading: true});
+    console.log("phoneloginOtp", data)
     actions
       .phoneloginOtp(data, {
         code: appData?.profile?.code,
@@ -128,7 +129,10 @@ export default function OtpVerification({navigation, route}) {
         systemuser: DeviceInfo.getUniqueId(),
       })
       .then((res) => {
-       navigation.push(navigationStrings.DRAWER_ROUTES); 
+        console.log("phoneloginOtp", res)
+      
+        navigation.navigate(navigationStrings.TAB_ROUTES, { screen: navigationStrings.HOMESTACK})
+      //  navigation.push(navigationStrings.DRAWER_ROUTES); 
         // if (userData) {
         //   userData?.client_preference?.verify_email ||
         //   userData?.client_preference?.verify_phone
@@ -296,7 +300,7 @@ export default function OtpVerification({navigation, route}) {
                     color: themeColors.primary_color,
                     fontFamily: fontFamily.bold,
                   }}>
-                  {`${otpTimerCounter(timer)} min`}
+                  {`${otpTimerCounter(timer)} sec`}
                 </Text>
               </Text>
             </View>

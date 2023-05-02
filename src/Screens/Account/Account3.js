@@ -39,6 +39,7 @@ import {
 import stylesFun from './styles';
 import {removeItem} from '../../utils/utils';
 import AsyncStorage from '@react-native-community/async-storage';
+
 export default function Account3({navigation}) {
   console.log("Account - Account3.js")
   const theme = useSelector((state) => state?.initBoot?.themeColor);
@@ -83,7 +84,7 @@ export default function Account3({navigation}) {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: 'Check out Runrun https://play.google.com/store/apps/details?id=com.udemy.android Use My refereral Code' +
+        message: 'Check out Runrun https://play.google.com/store/apps/details?id=com.deliveryzone.runrun Use My refereral Code' +
           (userData?.refferal_code && userData?.refferal_code != '' ? userData?.refferal_code : '') + '',
        // url: 'https://play.google.com/store/apps/details?id=com.udemy.android',
       });

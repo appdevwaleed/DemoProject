@@ -37,7 +37,7 @@ export default function BorderTextInput({
   borderRadius = 13,
   editable=true,
   focusable=true,
-  keyboardType="none",
+  keyboardType=Platform.OS==='ios'?'default': "none",
   ...props
 }) {
   const theme = useSelector((state) => state?.initBoot?.themeColor);

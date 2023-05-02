@@ -213,6 +213,7 @@ export default function VerifyAccount({navigation, route}) {
       })
       .then((res) => {
         showSuccess(res.message);
+        console.log("onVerify", res)
         if (res && res?.status == 'Success') {
 
 
@@ -301,7 +302,6 @@ export default function VerifyAccount({navigation, route}) {
 
           }
         }
-        
         updateState({isLoading: false});
       })
       .catch(errorMethod);

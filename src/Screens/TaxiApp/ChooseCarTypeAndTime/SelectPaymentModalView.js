@@ -61,7 +61,8 @@ export default function SelectPaymentModalView({
   onMessage,
   message,
   locationDetail,
-  focusedContainer=null
+  focusedContainer=null,
+  errorMethod
 }) {
   console.log("TaxiApp - SelectPaymentModalView.js")
   const theme = useSelector((state) => state?.initBoot?.themeColor);
@@ -100,12 +101,12 @@ export default function SelectPaymentModalView({
       () => {
         navigation.navigate(screenName, { data });
       };
-  const errorMethod = (error) => {
-    updateState({
-      isLoadingB: false,
-    });
-    showError(error?.message || error?.error);
-  };
+  // const errorMethod = (error) => {
+  //   updateState({
+  //     isLoadingB: false,
+  //   });
+  //   showError(error?.message || error?.error);
+  // };
  
   //Get list of all offers
   const _getAllOffers = (vendor, cartData) => {
@@ -295,17 +296,42 @@ export default function SelectPaymentModalView({
   }
 
   const onContactSelect=(type, item)=>{
-    if(type=="pickup"){
-      setPickName(item?.name)
-      setpickPhoneNo(item?.phonenumber)
-      if(sameUserCheck){
+    let check = false;
+
+    let phoneNum = res = (item?.phonenumber.replace(/ /g, ''));
+    console.log("item?.phonenumber", phoneNum)
+    console.log("item?.phonenumber?.length", phoneNum?.length)
+    if((phoneNum?.includes("+971", 0)&&phoneNum?.length===13)){
+      check=true;
+    }
+    else if ((phoneNum?.includes("01", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("02", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("03", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("04", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("05", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("06", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("07", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("08", 0)&&phoneNum?.length===10)
+    || (phoneNum?.includes("09", 0)&&phoneNum?.length===10)){
+      check=true;
+      phoneNum= "+971"+phoneNum?.substring(1, 10)
+    }
+    if(check){
+      if(type=="pickup"){
+        setPickName(item?.name)
+        setpickPhoneNo(phoneNum)
+        if(sameUserCheck){
+          setDropName(item?.name)
+          setDropPhoneNumber(phoneNum)
+        }
+      }
+      else{
         setDropName(item?.name)
-        setDropPhoneNumber(item?.phonenumber)
+        setDropPhoneNumber(phoneNum)
       }
     }
     else{
-      setDropName(item?.name)
-      setDropPhoneNumber(item?.phonenumber)
+      errorMethod({message:"Vlaid UAE based number is required"})
     }
    }
 
@@ -404,6 +430,7 @@ export default function SelectPaymentModalView({
             </View>
 
              {_renderSelectedItem(selectedCarOption)}
+
             <View style={{flexDirection:"row", marginTop:10, alignItems:"center"}}>
               <View style={{width:25, height:25, borderRadius:8, backgroundColor:colors.lightBluebackground, justifyContent:"center", alignItems:"center"}}>
                 <Image source={imagePath.locationIconBlue} style={{width:15, height:15, }}/>
@@ -440,11 +467,11 @@ export default function SelectPaymentModalView({
                 borderWidth:(focusedContainer!==null&&focusedContainer=="pickup")?1:0
               }}>
                 <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'flex-start', marginBottom:  moderateScale(5)}}>
-                <View style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
-                  <Image source={imagePath.arrowUpBlueBack} style={{width:18, height:18}} resizeMode={"cover"}/>
-                </View>
+                  <View style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
+                    <Image source={imagePath.arrowUpBlueBack} style={{width:18, height:18}} resizeMode={"cover"}/>
+                  </View>
                 
-                <Text style={{ color: colors.blackC, marginLeft:10, fontFamily: fontFamily.bold, fontSize:12}} >{strings.PICKUP}</Text>
+                  <Text style={{ color: colors.blackC, marginLeft:10, fontFamily: fontFamily.bold, fontSize:12}} >{strings.PICKUP}</Text>
                 </View>
                 <View>
                     <Text numberOfLines={2} style={{ color: colors.blackC,  fontFamily: fontFamily.medium, fontSize:12, opacity:0.7}}>
@@ -515,14 +542,32 @@ export default function SelectPaymentModalView({
                 </View>
                 <View style={{width:"100%", alignItems:"flex-start"}}>
                   <TouchableOpacity 
-                    onPress={() => {sameUserCheck?setSameUserCheck(false):setSameUserCheck(true)}}
+                    onPress={() => {
+                      if(sameUserCheck){
+                        setSameUserCheck(false)
+                        setDropName("")
+                        setDropPhoneNumber("")
+                      }
+                      else{
+                        setSameUserCheck(true)
+                      }
+                    }}
                     style={{borderRadius:15,flexDirection:"row", alignItems:"center", justifyContent:"flex-start", marginLeft:-20}}>
                     <RadioButton.Item
                       color={colors.focusBackGround}
                       value={sameUserCheck?1:0}
                       label={""}
                       status={sameUserCheck ? 'checked' : 'unchecked'}
-                      onPress={() => {sameUserCheck?setSameUserCheck(false):setSameUserCheck(true)}}
+                      onPress={() => {
+                        if(sameUserCheck){
+                          setSameUserCheck(false)
+                          setDropName("")
+                          setDropPhoneNumber("")
+                        }
+                        else{
+                          setSameUserCheck(true)
+                        }
+                      }}
                     />
                       <Text
                         numberOfLines={1}
@@ -708,7 +753,14 @@ export default function SelectPaymentModalView({
               </Text>
             </View>
             <TouchableOpacity 
-               onPress={() => {cod?setCod(false):setCod(true)}}
+               onPress={() => {
+                if(cod){
+                  setCod(false)
+                }
+                else{
+                  setCod(true)
+                }
+              }}
               style={{
                 width:"100%", height:50, borderRadius:15, backgroundColor:colors.lightBluebackground, marginTop:20, flexDirection:"row", alignItems:"center",
                 borderColor:colors.redB,
@@ -719,7 +771,14 @@ export default function SelectPaymentModalView({
                 value={cod?1:0}
                 label={""}
                 status={cod ? 'checked' : 'unchecked'}
-                onPress={() => {cod?setCod(false):setCod(true)}}
+                onPress={() => {
+                  if(cod){
+                    setCod(false)
+                  }
+                  else{
+                    setCod(true)
+                  }
+                }}
               />
               <Text
                 numberOfLines={1}

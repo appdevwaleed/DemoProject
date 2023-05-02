@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import Geocoder from 'react-native-geocoding';
 import MapView, { Callout, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapViewDirections from 'react-native-maps-directions';
@@ -330,13 +330,25 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
 
   //Get list of all orders api
   const _getAllCarAndPrices = () => {
-    console.log("locations1", paramData?.location)
+  //   let staticLocationTesting = [
+  //     {
+  //         "latitude":24.454347904988595,
+  //         "longitude":54.376989137381315
+  //     },
+  //     {
+  //         "latitude":24.475205916972662,
+  //         "longitude":54.3819703347981
+  //     }
+  // ];
+    // console.log("locations1", paramData?.location)
+    // console.log("static locations1", staticLocationTesting)
     
     updateState({ isLoading: true, showVendorModal: false, showCarModal: true , selectedCarOption:null});
     actions
       .getAllCarAndPrices(
         `/${selectedVendorOption?.id}?page=${pageNo}&limit=${limit}`,
         { locations: paramData?.location },
+        // { locations: staticLocationTesting },
         {
           code: appData?.profile?.code,
           currency: currencies?.primary_currency?.id,
@@ -419,28 +431,88 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
     // }
 
     if(pickDropData!==null){
+      let check1 = false;
+      let check2 = false;
+      
+      if(pickDropData?.pickNo!==""){
+        let phoneNumPickUp = res = (pickDropData?.pickNo.replace(/ /g, ''));
+        console.log("item?.phonenumber", phoneNumPickUp)
+        console.log("item?.phonenumber?.length", phoneNumPickUp?.length)
+        if((phoneNumPickUp?.includes("+971", 0)&&phoneNumPickUp?.length===13)){
+          check1=true;
+        }
+        else if ((phoneNumPickUp?.includes("01", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("02", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("03", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("04", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("05", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("06", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("07", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("08", 0)&&phoneNumPickUp?.length===10)
+        || (phoneNumPickUp?.includes("09", 0)&&phoneNumPickUp?.length===10)){
+          check1=true;
+          phoneNumPickUp= "+971"+phoneNumPickUp?.substring(1, 10)
+        }
+      }
+      if(pickDropData?.dropPhoneNumber!==""){
+        let phoneNumDropOff = res = (pickDropData?.dropPhoneNumber.replace(/ /g, ''));
+        console.log("item?.phonenumber", phoneNumDropOff)
+        console.log("item?.phonenumber?.length", phoneNumDropOff?.length)
+        if((phoneNumDropOff?.includes("+971", 0)&&phoneNumDropOff?.length===13)){
+          check2=true;
+        }
+        else if ((phoneNumDropOff?.includes("01", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("02", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("03", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("04", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("05", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("06", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("07", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("08", 0)&&phoneNumDropOff?.length===10)
+        || (phoneNumDropOff?.includes("09", 0)&&phoneNumDropOff?.length===10)){
+          check2=true;
+          phoneNumDropOff= "+971"+phoneNumDropOff?.substring(1, 10)
+        }
+      }
+      
       if(pickDropData?.pickName==""){
-        errorMethod({message:"Enter name and Phone number for Pickup"})
+        errorMethod({message:"Enter name for Pickup"})
         setFocusType("pickup")
       }
+
+     
       else if(pickDropData?.pickNo==""){
-        errorMethod({message:"Enter name and Phone number for Pickup"})
+        errorMethod({message:"Enter phone number for Pickup"})
         setFocusType("pickup")
       }
+      else if (!check1){
+        errorMethod({message:"Enter valid uae based phone number for Pickup"})
+        setFocusType("pickup")
+      }
+   
       else if(pickDropData?.dropName==""&&!pickDropData?.samePickDrop){
-        errorMethod({message:"Enter name and Phone number for Dropoff"})
+        errorMethod({message:"Enter name for Dropoff"})
         setFocusType("dropoff")
       }
       else if(pickDropData?.dropPhoneNumber==""&&!pickDropData?.samePickDrop){
-        errorMethod({message:"Enter name and Phone number for Dropoff"})
+        errorMethod({message:"Enter phone number for Dropoff"})
         setFocusType("dropoff")
       }
+      else if(!check2&&!pickDropData?.samePickDrop){
+        errorMethod({message:"Enter valid phone number for Dropoff"})
+        setFocusType("dropoff")
+      }
+
       else if(pickDropData?.dropName==""&&pickDropData?.samePickDrop){
-        errorMethod({message:"Enter name and Phone number for Pickup"})
+        errorMethod({message:"Enter name for Pickup"})
         setFocusType("pickup")
       }
       else if(pickDropData?.dropPhoneNumber==""&&pickDropData?.samePickDrop){
-        errorMethod({message:"Enter name and Phone number for Pickup"})
+        errorMethod({message:"Enter phone number for Pickup"})
+        setFocusType("pickup")
+      }
+      else if(!check2&&pickDropData?.samePickDrop){
+        errorMethod({message:"Enter valid phone number for Pickup"})
         setFocusType("pickup")
       }
       else if(pickDropData?.paymentmethod==false){
@@ -644,8 +716,9 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
       selectedVendorOption: item,
     });
   };
+
   const onPressPickUpNow = () => {
-    
+    console.log("selectedCarOption", selectedCarOption)
     let data = {};
     data['task_type'] = pickUpTimeType ? pickUpTimeType : '';
     // data['schedule_time'] =
@@ -666,6 +739,7 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
     data['product_id'] = selectedCarOption?.id;
     data['currency_id'] = currencies?.primary_currency?.id;
     data['tasks'] = paramData?.tasks;
+    data['is_same_emirate']=selectedCarOption?.is_sameEmirate==1?true:false;
     if (couponInfo) {
       data['coupon_id'] = couponInfo?.id;
     } else {
@@ -682,8 +756,6 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
 
     if(pickedUpDate!==default_Date){
       data['task_type'] = 'schedule';
-      
-
     }
     else if(parseInt(time__[0])!==parseInt(deftime__[0])){//hours are not matching 
       data['task_type'] = 'schedule';
@@ -711,6 +783,7 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
             })()
         : verify=true
     }
+    console.log("createDeliveryCart",data)
     if(verify){
 
       actions
@@ -753,7 +826,6 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
     // data['schedule_time'] =
     //   pickUpTimeType == 'now' ? '' : `${slectedDate} ${selectedTime}`;
     data['schedule_time'] = `${pickedUpDate} ${pickedUpTime}`
-
     data['recipient_phone'] = '';
     data['recipient_email'] = '';
     data['task_description'] = '';
@@ -887,6 +959,7 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
         message={messageTxt}
         locationDetail={paramData?.tasks}
         focusedContainer={focusType}
+        errorMethod={errorMethod}
       />
     );
   };
@@ -1010,7 +1083,7 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
 
       <MapView
         ref={mapRef}
-        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        // provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         region={region}
         initialRegion={region}
