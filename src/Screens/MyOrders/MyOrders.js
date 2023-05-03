@@ -381,6 +381,16 @@ export default function MyOrders({ navigation,route }) {
   //   }
   // }, [pageActive, pagePastOrder, pageScheduleOrder, isRefreshing]);
 
+    useEffect(() => {
+    if (userData && userData?.auth_token) {
+      _getListOfOrders();
+    } else {
+      updateState({
+        isLoading: false,
+      });
+    }
+  }, [isRefreshing]);
+
   //Refresh screen
 
   //Pull to refresh

@@ -18,7 +18,7 @@ import DrawerRoutes from './DrawerRoutes';
 import UserInterfaceStyle from 'react-native-user-interface-style';
 import colors from '../styles/colors';
 import TaxiAppStack from './TaxiAppStack';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppIntro from '../Screens/AppIntro';
 import { getItem } from '../utils/utils';
 import { AllPaymentMethods } from '../Screens';

@@ -31,7 +31,7 @@ navigator.geolocation = require('react-native-geolocation-service');
 import stylesFunc from '../styles';
 import AppLink from 'react-native-app-link';
 import type_codes from '../../../redux/types';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import colors from '../../../styles/colors';
 import { MyDarkTheme } from '../../../styles/theme';
 

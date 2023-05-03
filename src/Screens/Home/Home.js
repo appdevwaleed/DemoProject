@@ -31,7 +31,7 @@ navigator.geolocation = require('react-native-geolocation-service');
 import stylesFunc from './styles';
 import AppLink from 'react-native-app-link';
 import type_codes from '../../redux/types';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Home({ route, navigation }) {
   console.log("Home - Home.js")
   const paramData = route?.params;

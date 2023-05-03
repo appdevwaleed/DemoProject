@@ -47,7 +47,7 @@ import {
   googleLogin
 } from '../../../utils/socialLogin';
 import DeviceInfo from 'react-native-device-info';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import actions from '../../../redux/actions';
 import LinearGradient from "react-native-linear-gradient";
 

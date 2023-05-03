@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
-import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Geocoder from 'react-native-geocoding';
 import MapView, { Callout, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapViewDirections from 'react-native-maps-directions';
@@ -1083,7 +1083,7 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
 
       <MapView
         ref={mapRef}
-        // provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         region={region}
         initialRegion={region}

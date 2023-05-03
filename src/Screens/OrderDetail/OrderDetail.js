@@ -14,6 +14,7 @@ import {
   TextInput,
   TouchableHighlight,
   PermissionsAndroid,
+  Linking
 } from 'react-native';
 import { useDarkMode } from 'react-native-dark-mode';
 import FastImage from 'react-native-fast-image';
@@ -54,6 +55,14 @@ import Communications from 'react-native-communications';
 import {dummyUser} from '../../constants/constants';
 import GradientButton from '../../Components/GradientButton';
 import TransparentButtonWithTxtAndIcon from '../../Components/TransparentButtonWithTxtAndIcon';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+
 var base64Source;
 
 export default function OrderDetail({ navigation, route }) {
@@ -127,6 +136,35 @@ export default function OrderDetail({ navigation, route }) {
       };
 
   const isFocused = useIsFocused();
+  const openWhatsApp = (mobile) => {
+    let msg = " Hi "+delivery_agent?.name+", i am enquiring about the delivery with order no "+cartData?.order_number;
+    // mobile="+971569951550"
+    mobile = mobile.replace(/ /g, '')
+    console.log("msg", msg);
+    console.log("mobile", mobile);
+
+    if (mobile) {
+      if (msg) {
+        let url =
+          "whatsapp://send?text=" +
+          msg +
+          "&phone=" +
+          mobile;
+        console.log("url", url);
+        Linking.openURL(url)
+          .then(data => {
+            console.log("WhatsApp Opened successfully " + data);
+          })
+          .catch(() => {
+            alert("Make sure WhatsApp installed on your device");
+          });
+      } else {
+        alert("Please enter message to send");
+      }
+    } else {
+      alert("Please enter mobile no");
+    }
+  };
   // useFocusEffect(
   //   React.useCallback(() => {
   //     updateState({ isLoading: true });
@@ -696,28 +734,64 @@ export default function OrderDetail({ navigation, route }) {
                     // borderColor:colors.redB,
                     // borderWidth:(focusedContainer!==null&&focusedContainer=="pickup")?1:0
                   }}>
-                  <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between', marginBottom:  moderateScale(5)}}>
-                      <Text style={{ color: colors.blackC, fontFamily: fontFamily.bold, fontSize:14}} >{strings.PICKUP} : <Text numberOfLines={2} style={{ color: colors.blackC,  fontFamily: fontFamily.medium, fontSize:12, opacity:0.5}}>
-                        {cartData?.delivery_pickup_name}
-                      </Text>
-                    </Text>
-                    <TouchableOpacity onPress={()=>{
-                        Communications.phonecall(cartData?.delivery_pickup_phone_number, true)
-                    }}style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
-                      <Image source={imagePath.call} style={{width:15, height:15}} resizeMode={"cover"}/>
-                    </TouchableOpacity>
+                  <View style={{flexDirection:"row",  marginBottom:  moderateScale(5)}}>
+
+                      <Text style={{ color: colors.black, fontFamily: fontFamily.bold, fontSize:14}} >{strings.PICKUP} : </Text>
+                      <View style={{marginTop:0}}>
+                        <Text numberOfLines={2} style={{ color: colors.greyText,  fontFamily: fontFamily.medium, fontSize:14}}>
+                          {cartData?.delivery_pickup_name}
+                        </Text>
+                        <View style={{flexDirection:"row", justifyContent:"center", marginTop:5}}>
+                          <TouchableOpacity onPress={()=>{
+                            Communications.phonecall(cartData?.delivery_pickup_phone_number, true)
+                            }}style={{width:15, height:15,  justifyContent:"center", alignItems:"center", marginTop:3}}>
+                              <Image source={imagePath.callIconBlue} style={{width:15, height:15}} resizeMode={"cover"}/>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={()=>{
+                            Communications.phonecall(cartData?.delivery_pickup_phone_number, true)
+                            }}>
+                            <Text style={{ color: colors.greyText, fontFamily: fontFamily.medium, fontSize:14, marginLeft:10, textDecorationLine:"underline"}} >{cartData?.delivery_pickup_phone_number}</Text>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+
+                      
+                      
+                    
                   </View>
-                  <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between', marginBottom:  moderateScale(5)}}>
+                  <View style={{flexDirection:"row",  marginBottom:  moderateScale(5)}}>
+
+                      <Text style={{ color: colors.black, fontFamily: fontFamily.bold, fontSize:14}} >{strings.PICKUP} : </Text>
+                      <View style={{marginTop:0}}>
+                        <Text numberOfLines={2} style={{ color: colors.greyText,  fontFamily: fontFamily.medium, fontSize:14}}>
+                          {cartData?.delivery_drop_name}
+                        </Text>
+                        <View style={{flexDirection:"row", justifyContent:"center", marginTop:5}}>
+                          <TouchableOpacity onPress={()=>{
+                            Communications.phonecall(cartData?.delivery_drop_phone_number, true)
+                            }}style={{width:15, height:15,  justifyContent:"center", alignItems:"center", marginTop:3}}>
+                              <Image source={imagePath.callIconBlue} style={{width:15, height:15}} resizeMode={"cover"}/>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={()=>{
+                            Communications.phonecall(cartData?.delivery_drop_phone_number, true)
+                            }}
+                            >
+                            <Text style={{ color: colors.greyText, fontFamily: fontFamily.medium, fontSize:14, marginLeft:10, textDecorationLine:"underline"}} >{cartData?.delivery_drop_phone_number}</Text>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                  </View>
+                  {/* <View style={{ flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between', marginBottom:  moderateScale(5)}}>
                       <Text style={{ color: colors.blackC, fontFamily: fontFamily.bold, fontSize:14}} >{strings.DROPOFF} : <Text numberOfLines={2} style={{ color: colors.blackC,  fontFamily: fontFamily.medium, fontSize:12, opacity:0.5}}>
                         {cartData?.delivery_drop_name}
                       </Text>
                     </Text>
                     <TouchableOpacity onPress={()=>{
                         Communications.phonecall(cartData?.delivery_drop_phone_number, true)
-                    }} style={{width:25, height:25, borderRadius:10, backgroundColor:colors.white, justifyContent:"center", alignItems:"center"}}>
-                      <Image source={imagePath.call} style={{width:15, height:15}} resizeMode={"cover"}/>
+                    }} style={{width:25, height:25, justifyContent:"center", alignItems:"center"}}>
+                      <Image source={imagePath.callIconBlue} style={{width:15, height:15}} resizeMode={"cover"}/>
                     </TouchableOpacity>
-                  </View>
+                  </View> */}
               
                       
                 </View>
@@ -1193,7 +1267,7 @@ export default function OrderDetail({ navigation, route }) {
               <View style={{ flex: 1, flexDirection: 'row' ,alignItems: 'center', justifyContent: 'space-between'}}>
               {/* <View style={{ flex: .2}}><Image source={imagePath.vehicleIcon} /></View> */}
               <View  style={{ flex: .7, flexDirection: 'row' , alignItems: 'center', justifyContent: 'flex-start'}}>
-              <Image source={imagePath.vehicleIcon} />
+              <Image source={imagePath.truckiconBlue} style={{width:40, height:40}}/>
               <View style={{ flexDirection: 'column' ,alignItems: 'flex-start', justifyContent: 'flex-start' , marginLeft: moderateScale(15), }}>
                   <Text style={{fontFamily:fontFamily.bold, color:colors.black, fontSize:14}}>
                     {strings.SERVICEAGENT}
@@ -1203,29 +1277,86 @@ export default function OrderDetail({ navigation, route }) {
                   </Text>
               </View> 
               </View>
-              <View  style={{ flex: .3}}>
-              <TransparentButtonWithTxtAndIcon
-                    icon={imagePath.callIcon}
-                    btnText={strings.CALL}
-                    borderRadius={moderateScale(13)}
-                    containerStyle={{
-                      alignItems: 'center',
+              <View  style={{ flex: .3, alignItems:"flex-end",}}>
+                <Menu >
+                <MenuTrigger  >
+                <Image source={imagePath.callIconBlue} style={{width:20, height:20}}/>
+                    {/* <TransparentButtonWithTxtAndIcon
+                        icon={imagePath.callIcon}
+                        btnText={strings.CALL}
+                        borderRadius={moderateScale(13)}
+                        containerStyle={{
+                          alignItems: 'center',
+                          height: moderateScaleVertical(46),
+                          width:60
+                        }}
+                        // onPress={() => {
+                        //   Communications.phonecall(delivery_agent?.phone_number, true)
+                        // }}
+                        //marginBottom={moderateScaleVertical(10)}
+                      // marginTop={moderateScaleVertical(20)}
+                      btnStyle={{
+                        backgroundColor: colors.focusBackGround
+                      }}
+                        textStyle={{
+                          color: colors.white,
+                          textTransform: 'none',
+                          fontSize: textScale(12),
+                          marginLeft: moderateScale(4),
+                        }}
+                      > 
+                     
+                  
+                </TransparentButtonWithTxtAndIcon> */}
+                </MenuTrigger>
+                  <MenuOptions >
+                    <MenuOption onSelect={()=>openWhatsApp(delivery_agent?.phone_number)} >
+                      <View style={{alignItems:"center", flexDirection:"row", marginTop:10}}>
+                        <Text style={{color:colors.black, fontSize:14, fontFamily:fontFamily.bold, marginHorizontal:10, textDecorationLine: 'underline'}}>{delivery_agent?.phone_number}</Text>
+                        <Image source={imagePath.whatsappicon} style={{width:15, height:15}}/>
+                      </View>
+                    </MenuOption>
+                    <MenuOption onSelect={() => {
+                        Communications.phonecall(delivery_agent?.phone_number, true)
+                      }} >
+                      <View style={{alignItems:"center", flexDirection:"row", marginVertical:10}}>
+                        <Text style={{color:colors.black, fontSize:14, fontFamily:fontFamily.bold, marginHorizontal:10, textDecorationLine: 'underline'}}>{delivery_agent?.phone_number}</Text>
+                        <Image source={imagePath.callIconBlue} style={{width:15, height:15}}/>
+                      </View>
+                    </MenuOption>
+                    {/* <MenuOption onSelect={() => alert(`Delete`)} >
+                      <Text style={{color: 'red'}}>Delete</Text>
+                    </MenuOption> */}
+                  </MenuOptions>
+                </Menu>
+                {/* <TouchableOpacity onPress={()=>openWhatsApp(delivery_agent?.phone_number)}
+                  style={{justifyContent:"center", alignItems:"center",height: moderateScaleVertical(46), width:60, marginBottom:10}}>
+                  <Image source={imagePath.whatsappicon} style={{width:40, height:40}}/>
+                </TouchableOpacity>
+                <TransparentButtonWithTxtAndIcon
+                      icon={imagePath.callIcon}
+                      btnText={strings.CALL}
+                      borderRadius={moderateScale(13)}
+                      containerStyle={{
+                        alignItems: 'center',
+                        height: moderateScaleVertical(46),
+                        width:60
+                      }}
+                      onPress={() => {
+                        Communications.phonecall(delivery_agent?.phone_number, true)
+                      }}
+                      //marginBottom={moderateScaleVertical(10)}
+                    // marginTop={moderateScaleVertical(20)}
+                    btnStyle={{
+                      backgroundColor: colors.focusBackGround
                     }}
-                    onPress={() => {
-                      Communications.phonecall(delivery_agent?.phone_number, true)
-                    }}
-                    //marginBottom={moderateScaleVertical(10)}
-                  // marginTop={moderateScaleVertical(20)}
-                  btnStyle={{
-                    backgroundColor: colors.focusBackGround
-                  }}
-                    textStyle={{
-                      color: colors.white,
-                      textTransform: 'none',
-                      fontSize: textScale(12),
-                      marginLeft: moderateScale(4),
-                    }}
-                  />
+                      textStyle={{
+                        color: colors.white,
+                        textTransform: 'none',
+                        fontSize: textScale(12),
+                        marginLeft: moderateScale(4),
+                      }}
+                    /> */}
               </View>
               </View>
             </View>
@@ -2016,12 +2147,13 @@ export default function OrderDetail({ navigation, route }) {
           ...styles.mainComponent,
           backgroundColor: isDarkMode
             ? MyDarkTheme.colors.background
-            : colors.greyColor,
+            : colors.white,
         }}
         >
         {(cartItems[0]?.order_status?.current_status?.title==="Rejected") && (
-            <View style={{paddingHorizontal:20,  marginTop:10}}>
-              <LeftRightText
+            <View style={{marginHorizontal:20,  marginTop:10, backgroundColor:colors.white, borderWidth:0.5, borderRadius:15, borderColor:colors.redB, padding:10}}>
+
+              {/* <LeftRightText
                 leftText={strings.ORDER_STATUS}
                 rightText={cartItems[0]?.order_status?.current_status?.title}
                 isDarkMode={isDarkMode}
@@ -2056,7 +2188,9 @@ export default function OrderDetail({ navigation, route }) {
                     ? MyDarkTheme.colors.text
                     : colors.blackOpacity86,
                 }}
-              />
+              /> */}
+              <Text style={{color:colors.redB, fontSize:14, fontFamily:fontFamily.medium}}>We're sorry! Your order has been cancelled</Text>
+              <Text style={{color:colors.blackC, fontSize:14, fontFamily:fontFamily.bold, marginTop:5}}>Reason: <Text>{cartItems[0]?.reject_reason}</Text></Text>
             </View>
         )}
         <FlatList

@@ -31,7 +31,7 @@ import commonStylesFun from '../../styles/commonStyles';
 import {loaderOne} from '../../Components/Loaders/AnimatedLoaderFiles';
 import {useDarkMode} from 'react-native-dark-mode';
 import {MyDarkTheme} from '../../styles/theme';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import PasswordTextInput from '../../Components/PasswordTextInput';
 import {setItem} from '../../utils/utils';
 

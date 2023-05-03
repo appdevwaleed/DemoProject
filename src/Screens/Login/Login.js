@@ -40,7 +40,7 @@ import stylesFunc from './styles';
 import {useDarkMode} from 'react-native-dark-mode';
 import {MyDarkTheme} from '../../styles/theme';
 import TransparentButtonWithTxtAndIcon from '../../Components/ButtonComponent';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {mobile} from 'is_js';
 import {setItem} from '../../utils/utils';
 import PasswordTextInput from '../../Components/PasswordTextInput';
@@ -203,6 +203,7 @@ export default function Login({navigation,route}) {
   };
   //Error handling in api
   const errorMethod = (error) => {
+    console.log("errorMethod", error);
     updateState({isLoading: false});
 
     setTimeout(() => {
@@ -278,6 +279,7 @@ export default function Login({navigation,route}) {
     updateState({isLoading: true});
     googleLogin()
       .then((res) => {
+        console.log("res", res);
         if (res?.user) {
           _saveSocailLogin(res.user, 'google');
         } else {
@@ -502,15 +504,17 @@ export default function Login({navigation,route}) {
               <View style={styles.hyphen} />
             </View>
           ) : null} */}
-          {/* <View style={styles.socialRowBtn}>
-            {!!google_login && (
+          <View style={styles.socialRowBtn}>
+            {!!google_login && ( 
               <TouchableOpacity
                 onPress={() => openGmailLogin()}
                 style={{marginHorizontal: moderateScale(20)}}>
                 <Image source={imagePath.google} />
               </TouchableOpacity>
-            )}
-            {!!fb_login && (
+            )} 
+
+
+            {/* {!!fb_login && (
               <TouchableOpacity
                 onPress={() => openFacebookLogin()}
                 style={{marginHorizontal: moderateScale(20)}}>
@@ -531,8 +535,8 @@ export default function Login({navigation,route}) {
                 style={{marginHorizontal: moderateScale(20)}}>
                 <Image source={imagePath.apple} />
               </TouchableOpacity>
-            )}
-          </View> */}
+            )} */}
+          </View>
           <View
             style={{
               flexDirection: 'column',

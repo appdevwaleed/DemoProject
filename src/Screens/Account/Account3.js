@@ -38,8 +38,7 @@ import {
 } from '../../utils/helperFunctions';
 import stylesFun from './styles';
 import {removeItem} from '../../utils/utils';
-import AsyncStorage from '@react-native-community/async-storage';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Account3({navigation}) {
   console.log("Account - Account3.js")
   const theme = useSelector((state) => state?.initBoot?.themeColor);
