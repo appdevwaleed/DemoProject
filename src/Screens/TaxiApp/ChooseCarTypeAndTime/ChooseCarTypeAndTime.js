@@ -1083,7 +1083,7 @@ const  ChooseCarTypeAndTime= ({ navigation, route }) =>{
 
       <MapView
         ref={mapRef}
-        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        // provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         region={region}
         initialRegion={region}

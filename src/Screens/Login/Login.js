@@ -505,13 +505,13 @@ export default function Login({navigation,route}) {
             </View>
           ) : null} */}
           <View style={styles.socialRowBtn}>
-            {!!google_login && ( 
+            {/* {!!google_login && ( 
               <TouchableOpacity
                 onPress={() => openGmailLogin()}
                 style={{marginHorizontal: moderateScale(20)}}>
                 <Image source={imagePath.google} />
               </TouchableOpacity>
-            )} 
+            )}  */}
 
 
             {/* {!!fb_login && (

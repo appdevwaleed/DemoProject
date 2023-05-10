@@ -226,7 +226,7 @@ export default function OrderDetail({ navigation, route }) {
           //     ],
           //   });
           // }
-            if (res?.data?.type !== 'delivery') {
+          if (res?.data?.type !== 'delivery') {
             updateState({
               orderType : res?.data?.type,
               labels: [
@@ -236,7 +236,9 @@ export default function OrderDetail({ navigation, route }) {
                 strings.DELIVERED,
               ],
             });
-          }if (res?.data?.type === 'delivery') {
+          }
+
+          if (res?.data?.type === 'delivery') {
            
             updateState({
               orderType : res?.data?.type,
@@ -248,9 +250,16 @@ export default function OrderDetail({ navigation, route }) {
               ],
               deliveryCurrentPosition: res?.data?.delivery_status
             });
+
           }
+
+          
+
           console.log("THIS IS MY DATA STATUS",res?.data?.delivery_status,deliveryCurrentPosition,orderType);
           console.log("THIS IS MY RESPONSE DATA STATUS",JSON.stringify(res?.data));
+
+
+
           updateState({
             delivery_agent: res.data.delivery_agent,
             cartItems: res.data.vendors,
@@ -297,6 +306,7 @@ export default function OrderDetail({ navigation, route }) {
   };
 
   const errorMethod = (error) => {
+    console.log("error", error);
     updateState({ isLoading: false, isLoading: false, isLoadingC: false });
     showError(error?.message || error?.error);
   };
@@ -803,6 +813,7 @@ export default function OrderDetail({ navigation, route }) {
       </View >
     ); 
   };
+
   const orderAmountDetail = () => {
     return (
       <View style={styles.priceSection}>
