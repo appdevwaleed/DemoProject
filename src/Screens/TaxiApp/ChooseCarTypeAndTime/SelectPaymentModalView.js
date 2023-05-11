@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   I18nManager,
   Image,
+  Platform,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -355,7 +356,7 @@ export default function SelectPaymentModalView({
           ]
           : styles.bottomView
       }>
-      <View style={{flexDirection:"row", alignItems:"center", position:"absolute",top:0, left:0, right:0, height:60, zIndex:100, backgroundColor:colors.white, marginHorizontal:20}}>
+      <View style={{flexDirection:"row", alignItems:"center", position:"absolute",top:0, left:0, right:0, minHeight:60, zIndex:100, backgroundColor:colors.white, marginHorizontal:20, paddingVertical:Platform.OS=="ios"?40:0}}>
             <TouchableOpacity
               style={{ flex: 0.2 }}
               onPress={onPressBack}>
@@ -379,7 +380,7 @@ export default function SelectPaymentModalView({
               {strings?.ORDER_SUMMARY}
             </Text>
       </View>
-      <ScrollView style={{marginTop:20}}>
+      <ScrollView style={{marginTop:20,  paddingVertical:Platform.OS=="ios"?40:0}}>
         {/* <View
           style={{
             width: moderateScale(35),

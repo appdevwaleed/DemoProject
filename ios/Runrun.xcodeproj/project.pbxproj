@@ -12,9 +12,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		159C3E8E08D3F6FA57BE60DC /* Pods_Runrun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD40F1BC7C37A3C15417B66 /* Pods_Runrun.framework */; };
+		1858E26E2A0CB8E100F549BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1858E26D2A0CB8E100F549BD /* GoogleService-Info.plist */; };
 		370A0B9EE2053D675069E697 /* Pods_Runrun_RunrunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E0EB40ECC6E932DFCF6D27 /* Pods_Runrun_RunrunTests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D12387DD29E9DE7400927D02 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D12387DC29E9DE7400927D02 /* GoogleService-Info.plist */; };
 		D12387FF29E9EA9800927D02 /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = D12387E329E9EA8C00927D02 /* CircularStd-Book.otf */; };
 		D123880029E9EA9800927D02 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D12387E429E9EA8C00927D02 /* SFProText-Regular.ttf */; };
 		D123880229E9EA9800927D02 /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D12387E629E9EA8E00927D02 /* CircularStd-Medium.otf */; };
@@ -49,13 +49,13 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Runrun/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Runrun/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Runrun/main.m; sourceTree = "<group>"; };
+		1858E26D2A0CB8E100F549BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Runrun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runrun.debug.xcconfig"; path = "Target Support Files/Pods-Runrun/Pods-Runrun.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Runrun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runrun.release.xcconfig"; path = "Target Support Files/Pods-Runrun/Pods-Runrun.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Runrun-RunrunTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runrun-RunrunTests.debug.xcconfig"; path = "Target Support Files/Pods-Runrun-RunrunTests/Pods-Runrun-RunrunTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Runrun/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Runrun-RunrunTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runrun-RunrunTests.release.xcconfig"; path = "Target Support Files/Pods-Runrun-RunrunTests/Pods-Runrun-RunrunTests.release.xcconfig"; sourceTree = "<group>"; };
 		AAD40F1BC7C37A3C15417B66 /* Pods_Runrun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runrun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D12387DC29E9DE7400927D02 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Documents/Projects/ReactNative/AwesomeProject/ios/Runrun/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D12387E029E9EA8A00927D02 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		D12387E129E9EA8A00927D02 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
 		D12387E229E9EA8B00927D02 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 		13B07FAE1A68108700A75B9A /* Runrun */ = {
 			isa = PBXGroup;
 			children = (
+				1858E26D2A0CB8E100F549BD /* GoogleService-Info.plist */,
 				D187D7832A02E51700E5D0B5 /* RunrunDebug.entitlements */,
-				D12387DC29E9DE7400927D02 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -326,6 +326,7 @@
 			files = (
 				D123881229E9EA9800927D02 /* Eina02-SemiBold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				1858E26E2A0CB8E100F549BD /* GoogleService-Info.plist in Resources */,
 				D123881429E9EA9800927D02 /* FuturaBT-Heavy.ttf in Resources */,
 				D123881029E9EA9800927D02 /* Eina02-Bold.ttf in Resources */,
 				D123880829E9EA9800927D02 /* Metropolis-Bold.otf in Resources */,
@@ -337,7 +338,6 @@
 				D123880B29E9EA9800927D02 /* Metropolis-SemiBold.otf in Resources */,
 				D123881329E9EA9800927D02 /* Futura-Normal.ttf in Resources */,
 				D123881129E9EA9800927D02 /* Metropolis-Regular.otf in Resources */,
-				D12387DD29E9DE7400927D02 /* GoogleService-Info.plist in Resources */,
 				D123880029E9EA9800927D02 /* SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
