@@ -30,6 +30,7 @@ import PushNotification from 'react-native-push-notification';
 import LottieSplashScreen from "react-native-lottie-splash-screen";
 import { LogBox } from 'react-native';
 
+import { MenuProvider } from 'react-native-popup-menu';
 const App = () => {
   LogBox.ignoreAllLogs(); 
   const [internetConnection, setInternet] = useState(true);
@@ -242,21 +243,23 @@ const App = () => {
   // let isVal = store.getState().pendingNotifications.isVendorNotification
   // console.log("is val++",isVal)
   return (
-    <SafeAreaProvider>
-      <Provider ref={blurRef} store={store}>
-        <ForegroundHandler />
-        <Routes />
-        <NotificationModal />
-      </Provider>
-      <Container
-        width={width - 20}
-        position="top"
-        duration={2000}
-        positionValue={moderateScaleVertical(20)}
-      />
-      <FlashMessage position="top" />
-      <NoInternetModal show={!internetConnection} />
-    </SafeAreaProvider>
+        <MenuProvider>
+          <SafeAreaProvider>
+            <Provider ref={blurRef} store={store}>
+              <ForegroundHandler />
+              <Routes />
+              <NotificationModal />
+            </Provider>
+            <Container
+              width={width - 20}
+              position="top"
+              duration={2000}
+              positionValue={moderateScaleVertical(20)}
+            />
+            <FlashMessage position="top" />
+            <NoInternetModal show={!internetConnection} />
+          </SafeAreaProvider>
+        </MenuProvider>
   );
 };
 

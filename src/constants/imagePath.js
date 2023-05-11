@@ -4,7 +4,7 @@ export default {
   dropdownTriangle: require('../assets/images/ic_dropdown.png'),
   fb: require('../assets/images/ic_facebook.png'),
   apple: require('../assets/images/ic_apple.png'),
-  google: require('../assets/images/ic_google.png'),
+  google: require('../assets/images/ic_google2.png'),
   insta: require('../assets/images/ic_insta.png'),
   back: require('../assets/images/ic_back.png'),
   backWithSquare: require('../assets/images/backWithSquare.png'),
@@ -403,5 +403,9 @@ export default {
   arrowDownBlueBack:require('../assets/images/arrowDownBlueBack.png'),
   personContact:require('../assets/images/personContact.png'),
   // arrowDownBlueBack:require('../assets/images/arrowDownBlueBack.png'),
+  whatsappicon:require('../assets/images/whatsappicon.png'),
+  callIconBlue:require('../assets/images/callIconBlue.png'),
+  truckiconBlue:require('../assets/images/truckiconBlue.png'),
+
   
 };

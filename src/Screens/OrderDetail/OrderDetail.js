@@ -61,6 +61,7 @@ import {
   MenuOptions,
   MenuOption,
   MenuTrigger,
+  
 } from 'react-native-popup-menu';
 
 var base64Source;
@@ -1316,9 +1317,8 @@ export default function OrderDetail({ navigation, route }) {
                           marginLeft: moderateScale(4),
                         }}
                       > 
-                     
-                  
                 </TransparentButtonWithTxtAndIcon> */}
+                
                 </MenuTrigger>
                   <MenuOptions >
                     <MenuOption onSelect={()=>openWhatsApp(delivery_agent?.phone_number)} >
