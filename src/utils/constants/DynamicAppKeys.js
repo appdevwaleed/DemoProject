@@ -8,7 +8,7 @@ const shortCodes = {
 const appIds = {
   runrun: Platform.select({
     ios: 'com.deliveryzone',
-    android: 'com.deliveryzone',
+    android: 'com.deliveryzone.runrun',
   })
 };
 

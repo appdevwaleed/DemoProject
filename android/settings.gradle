@@ -1,4 +1,23 @@
 rootProject.name = 'Runrun'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
-includeBuild('../node_modules/react-native-gradle-plugin')
+includeBuild('../node_modules/react-native-gradle-plugin');
+
+//huawei
+// include ':react-native-hms-map'
+// project(':react-native-hms-map').projectDir = new File(rootProject.projectDir, '../node_modules/@hmscore/react-native-hms-map/android')
+// include ':react-native-hms-location'
+// project(':react-native-hms-location').projectDir = new File(rootProject.projectDir, '../node_modules/@hmscore/react-native-hms-location/android')
+// include ':react-native-hms-availability'
+// project(':react-native-hms-availability').projectDir = new File(rootProject.projectDir, '../node_modules/@hmscore/react-native-hms-availability/android')
+
+include ':react-native-version-check'
+project(':react-native-version-check').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-version-check/android')
+include ':react-native-audio-recorder-player'
+project(':react-native-audio-recorder-player').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-audio-recorder-player/android')
+
+include ':react-native-video'
+project(':react-native-video').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-video/android-exoplayer')
+
+include ':react-native-pusher-push-notifications'
+project(':react-native-pusher-push-notifications').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pusher-push-notifications/android')
